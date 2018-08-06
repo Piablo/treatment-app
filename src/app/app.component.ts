@@ -20,7 +20,7 @@ export class AppComponent {
   }
 
   getTestData(){
-    this.patientService.getTestData();
+    this.patientService.getData();
   }
 
   uniqueID:number = 11111;
