@@ -38,7 +38,7 @@ export class DataService {
   
   getData(){
     
-    var url = "http://tpapi01.azurewebsites.net/api/treatmentprotocolpersons/Search?searchOptions.firstName=eric";
+    var url = "https://tpapi01.azurewebsites.net/api/treatmentprotocolpersons/Search?searchOptions.firstName=eric";
     
     //over here
     // let headers = new Headers();
