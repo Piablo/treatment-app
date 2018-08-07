@@ -47,46 +47,15 @@ export class DataService {
     this.http.get('../assets/data/treamentProtocols.json').subscribe(res => {
       var responce = res.json()[0];
       this.treatmentProtocolPerson = responce;
-      console.log(this.treatmentProtocolPerson);
     });
   }
   
   getData(){
     
     var url = "https://tpapi01.azurewebsites.net/api/treatmentprotocolpersons/Search?searchOptions.firstName=eric";
-    
-    //over here
-    // let headers = new Headers();
-    // headers.append('Content-Type','application/json');
-    // headers.append('Accept', 'application/json');
-    // headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, DELETE, PUT');
-    // headers.append('Access-Control-Allow-Origin', '*');
-    // headers.append('Authorization','A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=');
-    // headers.append('Access-Control-Allow-Origin','http://localhost:4200');
-    
-    // let options = new RequestOptions({ headers: headers });
-    // console.log(options)
-    // //return this.http.get(url + 'album.get?album_id=' + album_id + '&apikey=' + this.apikey, options)
-    // //return this.http.get(url, options)
-    // this.http.get(url, options).subscribe(res => {
-    //   console.log(res);
-    // })
-    
-    //------------
-    
-    //var headers = new Headers();
-    // headers.append('content-type','application/json');
-    // headers.append('Authorization','A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=');
-    // let options = new RequestOptions({ headers:headers});
-    
-    
-    
+  
     let headers: Headers = new Headers();
     headers.append('Authorization', 'A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=');
-    
-    //let options = new RequestOptions({ headers: headers });
-    
-    
     
     this.http.get(url, {headers: headers}).subscribe(res => {
       console.log(res.json());

@@ -15,8 +15,6 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
     this.patients.push(this.patientModel);
-
-    console.log(this.patientModel);
   }
 
   @Input() patientModel: PatientDetails;
@@ -26,7 +24,7 @@ export class ProductComponent implements OnInit {
   url = '../assets/data/products.json';
   filteredProducts: Product[];
 
-  
+
   //Product Details
   product: Product;
   products: Product[] = [];

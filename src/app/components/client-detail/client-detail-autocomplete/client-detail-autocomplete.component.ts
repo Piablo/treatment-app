@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DataService } from '../../../services/data.service';
 import { PatientDetails } from '../../../../assets/models/patient';
+import { SharedService } from '../../../services/shared.service';
 
 @Component({
   selector: 'app-client-detail-autocomplete',
@@ -9,7 +10,7 @@ import { PatientDetails } from '../../../../assets/models/patient';
 })
 export class ClientDetailAutocompleteComponent implements OnInit {
 
-  constructor(private dataService:DataService) { }
+  constructor(private dataService:DataService, private sharedService: SharedService) { }
   
   ngOnInit() {
   }
@@ -41,6 +42,7 @@ export class ClientDetailAutocompleteComponent implements OnInit {
   url = '../assets/data/clients.json';
   
   acceptPatient(){
+
     this.addMedicationInfo.emit(this.patient);
   }
   currentlyFocused:string = "";
@@ -48,7 +50,9 @@ export class ClientDetailAutocompleteComponent implements OnInit {
   
   onSelect(event){
     this.patient = event;
-    this.acceptPatient();
+    console.log(this.patient);
+    this.sharedService.emitPatient(this.patient);
+    //this.acceptPatient();
   }
 
   formatUserEnteredString(){
@@ -136,7 +140,6 @@ export class ClientDetailAutocompleteComponent implements OnInit {
       if(this.currentFocusedField === ""){
         this.currentFocusedField = selectedField;
       }else{
-        console.log(this.FirstName);
         var value = this.populateData(this);
         this.populateModel.emit(value);
       }

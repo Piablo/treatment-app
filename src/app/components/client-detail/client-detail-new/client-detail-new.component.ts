@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PatientDetails } from '../../../../assets/models/patient'
+import { SharedService } from '../../../services/shared.service';
 
 @Component({
   selector: 'app-client-detail-new',
@@ -8,9 +9,8 @@ import { PatientDetails } from '../../../../assets/models/patient'
 })
 export class ClientDetailNewComponent implements OnInit {
   
-  constructor() { }
-  
-  @Input() patientModel: PatientDetails;
+  constructor(private sharedService: SharedService) { }
+
   @Output() updateModel = new EventEmitter<PatientDetails>();
   
   FirstName:string;
@@ -24,8 +24,13 @@ export class ClientDetailNewComponent implements OnInit {
   UnisolveProfileNumber:string;
   
   patientSelected:boolean = false;
+  patientModel:any;
   
   ngOnInit() {
+    console.log('client-detail-new');
+    this.sharedService.currentPatient.subscribe(res => {
+      this.patientModel = res;
+    });
     this.initilizeData();
   }
   
