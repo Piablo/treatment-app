@@ -21,10 +21,25 @@ export class DataService {
   
   treatmentProtocolPerson: TreatmentProtocolPerson;
   
-  getPatients(url) {
-    return this.http.get(url)
+  getPatients(url, query) {
+    let headers: Headers = new Headers();
+    headers.append('Authorization', 'A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=');
+    
+    return this.http.get("https://tpapi01.azurewebsites.net/api/treatmentprotocolpersons/Search?searchOptions.firstName=" + query, {headers: headers})
     .toPromise()
-    .then(res => <any[]> res.json().data)
+    .then(res => <any[]> res.json())
+    .then(data => { return data; });
+  }
+  
+  getCountries(field, query) {
+
+    var url = 'https://tpapi01.azurewebsites.net/api/treatmentprotocolpersons/Search?searchOptions.' + field + '=' + query;
+    let headers: Headers = new Headers();
+    headers.append('Authorization', 'A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=');
+
+    return this.http.get(url, {headers: headers})
+    .toPromise()
+    .then(res => <any[]> res.json())
     .then(data => { return data; });
   }
   
@@ -59,15 +74,21 @@ export class DataService {
     
     //------------
     
-    var headers = new Headers();
-    headers.append('Access-Control-Allow-Origin' , '*');
-    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
-    headers.append('Accept','application/json');
-    headers.append('content-type','application/json');
-    headers.append('Authorization','A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=');
-    let options = new RequestOptions({ headers:headers});
+    //var headers = new Headers();
+    // headers.append('content-type','application/json');
+    // headers.append('Authorization','A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=');
+    // let options = new RequestOptions({ headers:headers});
     
-    this.http.get(url, options).subscribe(res => {
+    
+    
+    let headers: Headers = new Headers();
+    headers.append('Authorization', 'A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=');
+    
+    //let options = new RequestOptions({ headers: headers });
+    
+    
+    
+    this.http.get(url, {headers: headers}).subscribe(res => {
       console.log(res.json());
     })
   }

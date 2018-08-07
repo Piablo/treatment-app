@@ -15,6 +15,8 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
     this.patients.push(this.patientModel);
+
+    console.log(this.patientModel);
   }
 
   @Input() patientModel: PatientDetails;
@@ -24,6 +26,7 @@ export class ProductComponent implements OnInit {
   url = '../assets/data/products.json';
   filteredProducts: Product[];
 
+  
   //Product Details
   product: Product;
   products: Product[] = [];
@@ -85,9 +88,10 @@ export class ProductComponent implements OnInit {
   filterProducts(event) {
     //this.clearInputs();
     let query = event.query;
-    this.patientService.getPatients(this.url).then(products => {
-      this.filteredProducts = this.filterProduct(query, products);
-    });
+    this.patientService.getPatients(this.url, query)
+    //.then(products => {
+      //this.filteredProducts = this.filterProduct(query, products);
+    //});
   }
 
   filterProduct(query, products: any[]):any[] {

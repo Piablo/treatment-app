@@ -1,0 +1,59 @@
+<p-table>
+  <ng-template pTemplate="header" class="ui-g-12">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Medical Aid Number</th>
+      <th>Auth Number</th>
+      <th>ID Number</th>
+    </tr> 
+    <tr>
+      <td>
+        <div class="ui-fluid">
+          <input type="text" pInputText 
+          [(ngModel)]="FirstName"
+          (keyup)="checkValidation()"/>
+        </div>
+      </td>
+      <td>
+        <div class="ui-fluid">
+          <input type="text" pInputText 
+          [(ngModel)]="Surname"
+          (keyup)="checkValidation()"/>
+        </div>
+      </td>
+      <td>
+        <div class="ui-fluid">
+          <input type="text" pInputText 
+          [(ngModel)]="MedicalAidNumber"
+          (keyup)="checkValidation()"/>
+        </div>
+      </td>
+      <td>
+        <div class="ui-fluid">
+          <input type="text" pInputText 
+          [(ngModel)]="UnisolveProfileNumber"
+          (keyup)="checkValidation()"/>
+        </div>
+        
+      </td>
+      <td>
+        <div class="ui-fluid">
+          <input type="text" pInputText 
+          [(ngModel)]="PersonID"
+          (keyup)="checkValidation()"/> 
+        </div>
+      </td>
+    </tr>
+    <div>
+    </div> 
+  </ng-template>   
+</p-table>
+<p-footer>
+  <button pButton type="button" 
+  [disabled]="!patientSelected" 
+  (click)="enterNewPatientDetails()" 
+  label="Select" 
+  icon="pi pi-check" 
+  style="margin-right: .25em"></button>
+</p-footer>

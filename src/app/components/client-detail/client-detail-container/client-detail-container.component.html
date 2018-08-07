@@ -1,0 +1,8 @@
+<div class="ui-g-11">
+  <p-card styleClass="ui-card-shadow">
+    <div>
+      <app-client-detail-autocomplete *ngIf="showAutocomplete" (populateModel)="populateModel($event)"></app-client-detail-autocomplete>
+      <app-client-detail-new *ngIf="!showAutocomplete" (updateModel)="updateModel($event)" [patientModel]="patientDetails"></app-client-detail-new>
+    </div>
+  </p-card>
+</div>

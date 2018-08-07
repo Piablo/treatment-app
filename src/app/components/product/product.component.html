@@ -5,7 +5,6 @@
         <tr>
           <th>First Name</th>
           <th>Last Name</th>
-          <th>Title</th>
           <th>Medical Aid Number</th>
           <th>Auth Number</th>
           <th>ID Number</th>
@@ -13,12 +12,11 @@
       </ng-template>
       <ng-template pTemplate="body" let-patient>
         <tr>
-          <td>{{patient.firstName}}</td>
-          <td>{{patient.lastName}}</td>
-          <td>{{patient.title}}</td>
-          <td>{{patient.medAidNum}}</td>
-          <td>{{patient.authNumber}}</td>
-          <td>{{patient.id}}</td>
+          <td>{{patient.FirstName}}</td>
+          <td>{{patient.Surname}}</td>
+          <td>{{patient.MedicalAidNumber}}</td>
+          <td>{{patient.UnisolveProfileNumber}}</td>
+          <td>{{patient.IDNumber}}</td>
         </tr>
       </ng-template>
     </p-table>

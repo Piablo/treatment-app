@@ -2,7 +2,7 @@
     "data": [ 
         {
             "title": "Mr",
-            "firstName": "Brandon", 
+            "FirstName": "Brandon", 
             "lastName": "Flowers", 
             "name": "Mr Brandon Flowers", 
             "medAidNum": "1111111", 
@@ -11,7 +11,7 @@
         }, 
         {
             "title": "Mrs",
-            "firstName": "Jane", 
+            "FirstName": "Jane", 
             "lastName": "Doe", 
             "name": "Mrs Jane Doe", 
             "medAidNum": "2222222", 
@@ -20,7 +20,7 @@
         }, 
         {
             "title": "Miss",
-            "firstName": "Molly", 
+            "FirstName": "Molly", 
             "lastName": "Wolly", 
             "name": "Miss Molly Wolly", 
             "medAidNum": "3333333", 

@@ -47,7 +47,7 @@
       'border-color': 'white',
       'height': '65vh'}">
       <div *ngIf="patientSearch">
-          <app-client-detail (addMedicationInfo)="addMedicationInfo($event)"></app-client-detail>
+          <app-client-detail-container (addMedicationInfo)="addMedicationInfo($event)"></app-client-detail-container>
       </div>
       <div *ngIf="!patientSearch">
           <app-product [patientModel]="patientModel" (addItem)="addItem($event)"></app-product>
@@ -62,3 +62,5 @@
 
 </div>
 </span>
+
+<!--<app-testing></app-testing>-->
