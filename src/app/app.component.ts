@@ -1,6 +1,7 @@
 import { Component} from '@angular/core';
 import { Product } from '../assets/models/product';
 import { DataService } from '../app/services/data.service';
+import { SharedService } from '../app/services/shared.service';
 
 interface TreatmentProtocol {
   protocolId:number;
@@ -14,9 +15,15 @@ interface TreatmentProtocol {
 })
 export class AppComponent {
   
-  constructor(private patientService: DataService){
+  constructor(private patientService: DataService, private sharedService: SharedService){
   }
   ngOnInit(){
+    this.sharedService.currentPatient.subscribe(res => {
+      if(res !== null){
+        this.patientModel = res;
+        this.patientSearch = false;
+      }
+    });
   }
 
   getTestData(){

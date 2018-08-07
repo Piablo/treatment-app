@@ -21,6 +21,7 @@ export class ClientDetailContainerComponent implements OnInit {
   patientDetails:PatientDetails;
 
   populateModel(model){
+    console.log(model);
     this.patientDetails = model;
     this.showAutocomplete = false;
   }

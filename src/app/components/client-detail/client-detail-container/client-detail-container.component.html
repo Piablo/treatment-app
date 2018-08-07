@@ -9,6 +9,7 @@
 
       <app-client-detail-new 
       *ngIf="!showAutocomplete" 
+      [patientDetails] ="patientDetails"
       (updateModel)="updateModel($event)"></app-client-detail-new>
 
     </div>

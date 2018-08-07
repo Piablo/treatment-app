@@ -11,39 +11,37 @@ export class ClientDetailNewComponent implements OnInit {
   
   constructor(private sharedService: SharedService) { }
 
+  @Input() patientDetails;
   @Output() updateModel = new EventEmitter<PatientDetails>();
   
-  FirstName:string;
-  FullName:string;
-  IDNumber:string;
-  MedicalAidName:string;
-  MedicalAidNumber:string;
-  PersonID:string;
-  Surname:string;
-  TreatmentProtocols:string;
-  UnisolveProfileNumber:string;
+  FirstName:string = "";
+  FullName:string = "";
+  IDNumber:string = "";
+  MedicalAidName:string = "";
+  MedicalAidNumber:string = "";
+  PersonID:string = "";
+  Surname:string = ""
+  TreatmentProtocols:string = "";
+  UnisolveProfileNumber:string = "";
   
   patientSelected:boolean = false;
-  patientModel:any;
   
   ngOnInit() {
     console.log('client-detail-new');
-    this.sharedService.currentPatient.subscribe(res => {
-      this.patientModel = res;
-    });
+    console.log(this.patientDetails);
     this.initilizeData();
   }
   
   initilizeData(){
-    this.FirstName = this.patientModel.FirstName;
-    this.FullName = this.patientModel.FullName;
-    this.IDNumber = this.patientModel.IDNumber;
-    this.MedicalAidName = this.patientModel.MedicalAidName;
-    this.MedicalAidNumber = this.patientModel.MedicalAidNumber;
-    this.PersonID = this.patientModel.PersonID;
-    this.Surname = this.patientModel.Surname;
-    this.TreatmentProtocols = this.patientModel.TreatmentProtocols;
-    this.UnisolveProfileNumber = this.patientModel.UnisolveProfileNumber;
+    this.FirstName = this.patientDetails.FirstName;
+    this.FullName = this.patientDetails.FullName;
+    this.IDNumber = this.patientDetails.IDNumber;
+    this.MedicalAidName = this.patientDetails.MedicalAidName;
+    this.MedicalAidNumber = this.patientDetails.MedicalAidNumber;
+    this.PersonID = this.patientDetails.PersonID;
+    this.Surname = this.patientDetails.Surname;
+    this.TreatmentProtocols = this.patientDetails.TreatmentProtocols;
+    this.UnisolveProfileNumber = this.patientDetails.UnisolveProfileNumber;
   }
   
   
@@ -52,22 +50,23 @@ export class ClientDetailNewComponent implements OnInit {
       && this.Surname !== null
       && this.MedicalAidNumber !== null
       && this.UnisolveProfileNumber !== null
-      && this.PersonID !== null){
+      && this.IDNumber !== null){
         this.patientSelected = true;
       }
     }
     enterNewPatientDetails(){
-      this.patientModel.FirstName = this.FirstName;
-      this.patientModel.FullName = this.FullName;
-      this.patientModel.IDNumber = this.IDNumber;
-      this.patientModel.MedicalAidName = this.MedicalAidName;
-      this.patientModel.MedicalAidNumber = this.MedicalAidNumber;
-      this.patientModel.PersonID = this.PersonID;
-      this.patientModel.Surname = this.Surname;
-      this.patientModel.TreatmentProtocols = this.TreatmentProtocols;
-      this.patientModel.UnisolveProfileNumber = this.UnisolveProfileNumber;
+      this.patientDetails.FirstName = this.FirstName;
+      this.patientDetails.FullName = this.FullName;
+      this.patientDetails.IDNumber = this.IDNumber;
+      this.patientDetails.MedicalAidName = this.MedicalAidName;
+      this.patientDetails.MedicalAidNumber = this.MedicalAidNumber;
+      this.patientDetails.PersonID = this.PersonID;
+      this.patientDetails.Surname = this.Surname;
+      this.patientDetails.TreatmentProtocols = this.TreatmentProtocols;
+      this.patientDetails.UnisolveProfileNumber = this.UnisolveProfileNumber;
 
-      this.updateModel.emit(this.patientModel);
+      this.sharedService.emitPatient(this.patientDetails);
+      this.updateModel.emit(this.patientDetails);
     }
 
     

@@ -52,7 +52,7 @@ export class ClientDetailAutocompleteComponent implements OnInit {
     this.patient = event;
     console.log(this.patient);
     this.sharedService.emitPatient(this.patient);
-    //this.acceptPatient();
+    this.acceptPatient();
   }
 
   formatUserEnteredString(){
