@@ -4,16 +4,19 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class StringService {
-
+  
   constructor() { }
   
   firstLetterToUpper(word){
     var value;
-    var tempValue = word.toLowerCase();
-    value = tempValue.charAt(0).toUpperCase() + tempValue.substr(1);
-
-    console.log(value);
-    return value;
+    try{
+      
+      var tempValue = word.toLowerCase();
+      value = tempValue.charAt(0).toUpperCase() + tempValue.substr(1);
+    }finally{
+      console.log(value);
+      return value;
+    }
   }
-    
+  
 }

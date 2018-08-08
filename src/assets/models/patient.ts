@@ -1,11 +1,11 @@
 export interface PatientDetails{
     FirstName:string;
     FullName:string;
-    IDNumber:string;
+    IDNumber:number;
     MedicalAidName: string;
-    MedicalAidNumber:string;
-    PersonID:string;
+    MedicalAidNumber:number;
+    PersonID:number;
     Surname:string;
     TreatmentProtocols:string;
-    UnisolveProfileNumber:string;
+    UnisolveProfileNumber:number;
 }

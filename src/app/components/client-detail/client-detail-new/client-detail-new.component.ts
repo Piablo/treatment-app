@@ -15,20 +15,20 @@ export class ClientDetailNewComponent implements OnInit {
     private stringService: StringService,
   ) { }
   
-
+  
   @Input() patientDetails;
   @Output() updateModel = new EventEmitter<PatientDetails>();
   @ViewChild('surname') surname: ElementRef;
   
   FirstName:string = "";
   FullName:string = "";
-  IDNumber:string = "";
+  IDNumber:number = null;
   MedicalAidName:string = "";
-  MedicalAidNumber:string = "";
-  PersonID:string = "";
+  MedicalAidNumber:number = null;
+  PersonID:number = null;
   Surname:string = ""
   TreatmentProtocols:string = "";
-  UnisolveProfileNumber:string = "";
+  UnisolveProfileNumber:number = null;
   
   patientSelected:boolean = false;
   
@@ -37,10 +37,10 @@ export class ClientDetailNewComponent implements OnInit {
     console.log(this.patientDetails);
     this.initilizeData();
   }
-
+  
   ngAfterViewInit() {
     this.surname.nativeElement.focus();
-}
+  }
   
   initilizeData(){
     this.FirstName = this.patientDetails.FirstName;
@@ -56,31 +56,52 @@ export class ClientDetailNewComponent implements OnInit {
   
   
   checkValidation(){
-    if(this.FirstName !== null
-      && this.Surname !== null
-      && this.MedicalAidNumber !== null
-      && this.UnisolveProfileNumber !== null
-      && this.IDNumber !== null){
-        this.patientSelected = true;
-      }
+    var showButton = true;
+    var showAutoCompletePage = true;
+    if(this.FirstName !== ""){
+      showAutoCompletePage = false;
+    }else{
+      showButton = false;
     }
-    enterNewPatientDetails(){
-      this.FirstName = this.stringService.firstLetterToUpper(this.FirstName);
-      this.Surname = this.stringService.firstLetterToUpper(this.Surname);
-
-
-      this.patientDetails.FirstName = this.FirstName;
-      this.patientDetails.FullName = this.FullName;
-      this.patientDetails.IDNumber = this.IDNumber;
-      this.patientDetails.MedicalAidName = this.MedicalAidName;
-      this.patientDetails.MedicalAidNumber = this.MedicalAidNumber;
-      this.patientDetails.PersonID = this.PersonID;
-      this.patientDetails.Surname = this.Surname;
-      this.patientDetails.TreatmentProtocols = this.TreatmentProtocols;
-      this.patientDetails.UnisolveProfileNumber = this.UnisolveProfileNumber;
-
-      this.sharedService.emitPatient(this.patientDetails);
-      this.updateModel.emit(this.patientDetails);
+    if(this.Surname !== ""){
+      showAutoCompletePage = false;
+    }else{
+      showButton = false;
     }
+    if(this.MedicalAidNumber !== null){
+      showAutoCompletePage = false;
+    }else{
+      showButton = false;
+    }
+    if(this.UnisolveProfileNumber !== null){
+      showAutoCompletePage = false;
+    }else{
+      showButton = false;
+    }
+    if(this.IDNumber !== null){
+      showAutoCompletePage = false;
+    }else{
+      showButton = false;
+    }
+    this.patientSelected = showButton;
+    console.log(showButton);
+    console.log("Show autocomplete page: " + showAutoCompletePage);
   }
-  
+  enterNewPatientDetails(){
+    this.FirstName = this.stringService.firstLetterToUpper(this.FirstName);
+    this.Surname = this.stringService.firstLetterToUpper(this.Surname);
+    
+    this.patientDetails.FirstName = this.FirstName;
+    this.patientDetails.FullName = this.FullName;
+    this.patientDetails.IDNumber = this.IDNumber;
+    this.patientDetails.MedicalAidName = this.MedicalAidName;
+    this.patientDetails.MedicalAidNumber = this.MedicalAidNumber;
+    this.patientDetails.PersonID = this.PersonID;
+    this.patientDetails.Surname = this.Surname;
+    this.patientDetails.TreatmentProtocols = this.TreatmentProtocols;
+    this.patientDetails.UnisolveProfileNumber = this.UnisolveProfileNumber;
+    
+    this.sharedService.emitPatient(this.patientDetails);
+    this.updateModel.emit(this.patientDetails);
+  }
+}

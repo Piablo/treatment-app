@@ -28,13 +28,13 @@ export class ClientDetailAutocompleteComponent implements OnInit {
   
   //Patient Details
   FirstName:string = "";
-  IDNumber:string = "";
+  IDNumber:number = null;
   MedicalAidName: string = "";
-  MedicalAidNumber:string = "";
-  PersonID: string = "";
+  MedicalAidNumber:number = null;
+  PersonID:number = null;
   Surname:string = "";
   TreatmentProtocols:string = "";
-  UnisolveProfileNumber:string = "";
+  UnisolveProfileNumber:number = null;
   
   currentFocusedField:string = "";
   
@@ -91,9 +91,9 @@ export class ClientDetailAutocompleteComponent implements OnInit {
   
   clearInputs(){
     this.patient.FullName = "";
-    this.IDNumber = "";
-    this.MedicalAidNumber = "";
-    this.UnisolveProfileNumber = "";
+    this.IDNumber = null;
+    this.MedicalAidNumber = null;
+    this.UnisolveProfileNumber = null;
   }
   filterCountrySingle(event, fieldName) {
     let query = event.query;
@@ -120,6 +120,12 @@ export class ClientDetailAutocompleteComponent implements OnInit {
           filtered.push(value);
         }
       }
+      else if(fieldName === 'idnumber'){
+        if(patient.IDNumber.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+          value = this.populateData(patient);
+          filtered.push(value);
+        }
+      }
     }
     return filtered;
   }
@@ -133,7 +139,7 @@ export class ClientDetailAutocompleteComponent implements OnInit {
       MedicalAidNumber: country.MedicalAidNumber,
       TreatmentProtocols: country.TreatmentProtocols,
       UnisolveProfileNumber: country.UnisolveProfileNumber,
-      FullName: country.FirstName + " " + country.Surname
+      FullName: country.FirstName + " " + country.Surname + " " + country.IDNumber
     }
     return value;
   }
@@ -150,10 +156,10 @@ export class ClientDetailAutocompleteComponent implements OnInit {
       value = true;
       this.Surname = this.stringService.firstLetterToUpper(this.Surname);
     }
-    if(this.MedicalAidNumber !== ""){
+    if(this.MedicalAidNumber !== null){
       value = true;
     }
-    if(this.IDNumber !== ""){
+    if(this.IDNumber !== null){
       value = true;
     }
     return value;
