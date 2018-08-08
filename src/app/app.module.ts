@@ -21,6 +21,7 @@ import { ClientDetailAutocompleteComponent } from './components/client-detail/cl
 import { ClientDetailNewComponent } from './components/client-detail/client-detail-new/client-detail-new.component';
 import { ClientDetailContainerComponent } from './components/client-detail/client-detail-container/client-detail-container.component';
 import { ProductContainerComponent } from './components/product/product-container/product-container.component';
+import { ProductSearchComponent } from './components/product/product-search/product-search.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ProductContainerComponent } from './components/product/product-containe
     ClientDetailAutocompleteComponent,
     ClientDetailNewComponent,
     ClientDetailContainerComponent,
-    ProductContainerComponent
+    ProductContainerComponent,
+    ProductSearchComponent
   ],
   imports: [
     BrowserModule,
