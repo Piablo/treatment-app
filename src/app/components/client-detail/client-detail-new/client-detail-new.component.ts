@@ -10,6 +10,7 @@ import { SharedService } from '../../../services/shared.service';
 export class ClientDetailNewComponent implements OnInit {
   
   constructor(private sharedService: SharedService) { }
+  
 
   @Input() patientDetails;
   @Output() updateModel = new EventEmitter<PatientDetails>();
@@ -68,7 +69,5 @@ export class ClientDetailNewComponent implements OnInit {
       this.sharedService.emitPatient(this.patientDetails);
       this.updateModel.emit(this.patientDetails);
     }
-
-    
   }
   

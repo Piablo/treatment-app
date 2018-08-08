@@ -46,14 +46,16 @@
             <div class="ui-fluid">
                 <input type="text" pInputText 
                 [(ngModel)]="medAidNumber"
-                (keyup)="checkValidation()"/>
+                (keyup)="checkValidation()"
+                (focus)="onFocus('medAidNumber')"/>
             </div>
         </td>
         <td>
             <div class="ui-fluid">
                 <input type="text" pInputText 
                 [(ngModel)]="authNumber"
-                (keyup)="checkValidation()"/>
+                (keyup)="checkValidation()"
+                (focus)="onFocus('authNumber')"/>
             </div>
             
         </td>
@@ -61,7 +63,8 @@
             <div class="ui-fluid">
                 <input type="text" pInputText 
                 [(ngModel)]="idNumber"
-                (keyup)="checkValidation()"/> 
+                (keyup)="checkValidation()"
+                (focus)="onFocus('idNumber')"/> 
             </div>
         </td>
     </tr>
