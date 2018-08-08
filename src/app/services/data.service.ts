@@ -18,13 +18,15 @@ export class DataService {
   
   constructor(private http: Http) {}
   
-  getCountries(field, query) {
+  get(url, field, query) {
 
-    var url = 'https://tpapi01.azurewebsites.net/api/treatmentprotocolpersons/Search?searchOptions.' + field + '=' + query;
+    var base = 'https://tpapi01.azurewebsites.net/';
+    var uri = base + url + field + '=' + query;
+
     let headers: Headers = new Headers();
     headers.append('Authorization', 'A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=');
 
-    return this.http.get(url, {headers: headers})
+    return this.http.get(uri, {headers: headers})
     .toPromise()
     .then(res => <any[]> res.json())
     .then(data => { return data; });

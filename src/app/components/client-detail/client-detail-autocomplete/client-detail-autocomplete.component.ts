@@ -46,9 +46,6 @@ export class ClientDetailAutocompleteComponent implements OnInit {
   patient: PatientDetails;
   filteredPatients: any[];
   
-  //URLs
-  url = '../assets/data/clients.json';
-  
   acceptPatient(){
     this.addMedicationInfo.emit(this.patient);
   }
@@ -94,9 +91,12 @@ export class ClientDetailAutocompleteComponent implements OnInit {
     this.MedicalAidNumber = null;
     this.UnisolveProfileNumber = null;
   }
+
+  url = 'api/treatmentprotocolpersons/Search?searchOptions.';
+
   filterCountrySingle(event, fieldName) {
     let query = event.query;
-    this.dataService.getCountries(fieldName, query).then(countries => {
+    this.dataService.get(this.url, fieldName, query).then(countries => {
       this.filteredCountriesSingle = this.filterCountry(query, countries,fieldName);
     });
   }

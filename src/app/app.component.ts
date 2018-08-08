@@ -26,10 +26,6 @@ export class AppComponent {
     });
   }
 
-  getTestData(){
-    this.patientService.getData();
-  }
-
   uniqueID:number = 11111;
   products: Product[] = [];
 
