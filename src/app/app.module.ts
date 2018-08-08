@@ -17,18 +17,18 @@ import {ScrollPanelModule} from 'primeng/scrollpanel';
 
 //Components
 import { AppComponent } from './app.component';
-import { ProductComponent } from './components/product/product.component';
 import { ClientDetailAutocompleteComponent } from './components/client-detail/client-detail-autocomplete/client-detail-autocomplete.component';
 import { ClientDetailNewComponent } from './components/client-detail/client-detail-new/client-detail-new.component';
 import { ClientDetailContainerComponent } from './components/client-detail/client-detail-container/client-detail-container.component';
+import { ProductContainerComponent } from './components/product/product-container/product-container.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductComponent,
     ClientDetailAutocompleteComponent,
     ClientDetailNewComponent,
-    ClientDetailContainerComponent
+    ClientDetailContainerComponent,
+    ProductContainerComponent
   ],
   imports: [
     BrowserModule,

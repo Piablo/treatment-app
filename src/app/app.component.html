@@ -50,7 +50,7 @@
           <app-client-detail-container (addMedicationInfo)="addMedicationInfo($event)"></app-client-detail-container>
       </div>
       <div *ngIf="!patientSearch">
-          <app-product [patientModel]="patientModel" (addItem)="addItem($event)"></app-product>
+          <app-product-container [patientModel]="patientModel" (addItem)="addItem($event)"></app-product-container>
       </div>
   </p-scrollPanel>
   

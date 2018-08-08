@@ -1,16 +1,16 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { PatientDetails } from '../../../assets/models/patient';
+import { PatientDetails } from '../../../../assets/models/patient';
 import { Http} from '@angular/http';
-import { DataService } from '../../services/data.service';
-import { Product } from '../../../assets/models/product';
+import { DataService } from '../../../services/data.service';
+import { Product } from '../../../../assets/models/product';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  selector: 'app-product-container',
+  templateUrl: './product-container.component.html',
+  styleUrls: ['./product-container.component.css']
 })
-export class ProductComponent implements OnInit {
-  
+export class ProductContainerComponent implements OnInit {
+
   constructor(private http: Http, private patientService: DataService) { }
 
   ngOnInit() {

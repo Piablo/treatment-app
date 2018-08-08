@@ -14,7 +14,6 @@ export class StringService {
       var tempValue = word.toLowerCase();
       value = tempValue.charAt(0).toUpperCase() + tempValue.substr(1);
     }finally{
-      console.log(value);
       return value;
     }
   }

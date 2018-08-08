@@ -18,6 +18,7 @@ export class ClientDetailNewComponent implements OnInit {
   
   @Input() patientDetails;
   @Output() updateModel = new EventEmitter<PatientDetails>();
+  @Output() showAutoComplete = new EventEmitter<boolean>();
   @ViewChild('surname') surname: ElementRef;
   
   FirstName:string = "";
@@ -33,8 +34,6 @@ export class ClientDetailNewComponent implements OnInit {
   patientSelected:boolean = false;
   
   ngOnInit() {
-    console.log('client-detail-new');
-    console.log(this.patientDetails);
     this.initilizeData();
   }
   
@@ -84,8 +83,9 @@ export class ClientDetailNewComponent implements OnInit {
       showButton = false;
     }
     this.patientSelected = showButton;
-    console.log(showButton);
-    console.log("Show autocomplete page: " + showAutoCompletePage);
+    if(showAutoCompletePage){
+      this.showAutoComplete.emit(true);
+    }
   }
   enterNewPatientDetails(){
     this.FirstName = this.stringService.firstLetterToUpper(this.FirstName);

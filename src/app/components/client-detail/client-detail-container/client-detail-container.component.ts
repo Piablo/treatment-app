@@ -12,21 +12,18 @@ export class ClientDetailContainerComponent implements OnInit {
   constructor(private sharedService: SharedService) { }
 
   ngOnInit() {
-    console.log('client-detail-container')
-    this.sharedService.currentPatient.subscribe(res => {
-      console.log(res);
-    })
   }
   showAutocomplete:boolean = true;
   patientDetails:PatientDetails;
 
   populateModel(model){
-    console.log(model);
     this.patientDetails = model;
     this.showAutocomplete = false;
   }
+  showAutoComplete(event){
+    this.showAutocomplete = true;
+  }
   updateModel(event){
-    //console.log(event);
   }
   addMedicationInfo(event){
   }

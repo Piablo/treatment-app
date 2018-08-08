@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { DataService } from '../../../services/data.service';
 import { PatientDetails } from '../../../../assets/models/patient';
 import { SharedService } from '../../../services/shared.service';
@@ -18,9 +18,13 @@ export class ClientDetailAutocompleteComponent implements OnInit {
   
   ngOnInit() {
   }
+
+  ngAfterViewInit() {
+  }
   
   @Output() addMedicationInfo = new EventEmitter<PatientDetails>();
   @Output() populateModel = new EventEmitter<PatientDetails>();
+ // @ViewChild('firstname') firstname: ElementRef;
   
   //Application State
   patientSelected:boolean = false;
@@ -53,7 +57,6 @@ export class ClientDetailAutocompleteComponent implements OnInit {
   
   onSelect(event){
     this.patient = event;
-    console.log(this.patient);
     this.sharedService.emitPatient(this.patient);
     this.acceptPatient();
   }
@@ -64,10 +67,6 @@ export class ClientDetailAutocompleteComponent implements OnInit {
     
     var lower = this.Surname.toLowerCase();
     this.Surname = lower.charAt(0).toUpperCase() + lower.substr(1);
-  }
-  
-  testing(idfromDom){
-    console.log(idfromDom);
   }
   enterNewPatientDetails(){
     
@@ -143,10 +142,8 @@ export class ClientDetailAutocompleteComponent implements OnInit {
     }
     return value;
   }
-  
   checkForPopulatedFields(){
     var value:boolean = false;
-    console.log(this.FirstName);
     
     if(this.FirstName !== ""){
       value = true;
@@ -164,8 +161,6 @@ export class ClientDetailAutocompleteComponent implements OnInit {
     }
     return value;
   }
-
-  
   onFocus(selectedField){
     if(this.checkForPopulatedFields()){
       var value = this.populateData(this);
