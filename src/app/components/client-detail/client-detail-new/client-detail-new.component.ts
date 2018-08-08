@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { PatientDetails } from '../../../../assets/models/patient'
 import { SharedService } from '../../../services/shared.service';
+import { StringService } from '../../../services/string.service';
 
 @Component({
   selector: 'app-client-detail-new',
@@ -9,11 +10,15 @@ import { SharedService } from '../../../services/shared.service';
 })
 export class ClientDetailNewComponent implements OnInit {
   
-  constructor(private sharedService: SharedService) { }
+  constructor(
+    private sharedService: SharedService,
+    private stringService: StringService,
+  ) { }
   
 
   @Input() patientDetails;
   @Output() updateModel = new EventEmitter<PatientDetails>();
+  @ViewChild('surname') surname: ElementRef;
   
   FirstName:string = "";
   FullName:string = "";
@@ -32,6 +37,10 @@ export class ClientDetailNewComponent implements OnInit {
     console.log(this.patientDetails);
     this.initilizeData();
   }
+
+  ngAfterViewInit() {
+    this.surname.nativeElement.focus();
+}
   
   initilizeData(){
     this.FirstName = this.patientDetails.FirstName;
@@ -56,6 +65,10 @@ export class ClientDetailNewComponent implements OnInit {
       }
     }
     enterNewPatientDetails(){
+      this.FirstName = this.stringService.firstLetterToUpper(this.FirstName);
+      this.Surname = this.stringService.firstLetterToUpper(this.Surname);
+
+
       this.patientDetails.FirstName = this.FirstName;
       this.patientDetails.FullName = this.FullName;
       this.patientDetails.IDNumber = this.IDNumber;

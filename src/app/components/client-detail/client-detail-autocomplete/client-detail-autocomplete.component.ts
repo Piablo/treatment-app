@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DataService } from '../../../services/data.service';
 import { PatientDetails } from '../../../../assets/models/patient';
 import { SharedService } from '../../../services/shared.service';
+import { StringService } from '../../../services/string.service';
 
 @Component({
   selector: 'app-client-detail-autocomplete',
@@ -10,7 +11,10 @@ import { SharedService } from '../../../services/shared.service';
 })
 export class ClientDetailAutocompleteComponent implements OnInit {
   
-  constructor(private dataService:DataService, private sharedService: SharedService) { }
+  constructor(
+    private dataService:DataService, 
+    private sharedService: SharedService,
+    private stringService: StringService) { }
   
   ngOnInit() {
   }
@@ -140,9 +144,11 @@ export class ClientDetailAutocompleteComponent implements OnInit {
     
     if(this.FirstName !== ""){
       value = true;
+      this.FirstName = this.stringService.firstLetterToUpper(this.FirstName);
     }
     if(this.Surname !== ""){
       value = true;
+      this.Surname = this.stringService.firstLetterToUpper(this.Surname);
     }
     if(this.MedicalAidNumber !== ""){
       value = true;
@@ -152,6 +158,7 @@ export class ClientDetailAutocompleteComponent implements OnInit {
     }
     return value;
   }
+
   
   onFocus(selectedField){
     if(this.checkForPopulatedFields()){
