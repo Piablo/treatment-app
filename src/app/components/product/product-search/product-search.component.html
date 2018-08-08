@@ -5,23 +5,48 @@
     <tr>
       <th>Nappi</th>
       <th>Product</th>
+      <th>Active</th>
       <th>Dosage</th>
       <th>Frequency</th>
+      <th>Repeat</th>
     </tr>
     <tr>
       <td>
         <div>
           <div class="ui-fluid">
-            <input type="text" pInputText 
-            [(ngModel)]="nappi"/>
+            <p-autoComplete 
+              [(ngModel)]="product" 
+              [suggestions]="filteredProducts" 
+              (completeMethod)="filterProductSingle($event, 'nappi')" 
+              field="Description" 
+              [size]="30"
+              [minLength]="1"></p-autoComplete>
           </div>
         </div>
       </td>
       <td>
         <div>
           <div class="ui-fluid">
-            <input type="text" pInputText 
-            [(ngModel)]="productName"/>
+            <p-autoComplete 
+              [(ngModel)]="product" 
+              [suggestions]="filteredProducts" 
+              (completeMethod)="filterProductSingle($event, 'productName')" 
+              field="Description" 
+              [size]="30"
+              [minLength]="1"></p-autoComplete>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div>
+          <div class="ui-fluid">
+            <p-autoComplete 
+              [(ngModel)]="product" 
+              [suggestions]="filteredProducts" 
+              (completeMethod)="filterProductSingle($event, 'active')" 
+              field="Description" 
+              [size]="30"
+              [minLength]="1"></p-autoComplete>
           </div>
         </div>
       </td>
@@ -29,6 +54,13 @@
         <div class="ui-fluid">
           <input type="text" pInputText 
           [(ngModel)]="dosage"
+          (keyup)="checkComponentState()"/>
+        </div>
+      </td>
+      <td>
+        <div class="ui-fluid">
+          <input type="text" pInputText 
+          [(ngModel)]="frequency"
           (keyup)="checkComponentState()"/>
         </div>
       </td>
@@ -51,11 +83,7 @@
   </ng-template>
 </p-table>
 <p-footer>
-  <button pButton type="button" 
-  (click)="saveProduct()" 
-  [disabled]="disableAddButton"
-  label="Add" 
-  icon="pi pi-check" 
-  style="margin-right: .25em"></button>
 </p-footer>
 </p-card>
+
+
