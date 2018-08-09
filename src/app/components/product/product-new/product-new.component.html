@@ -1,6 +1,6 @@
 <p-panel >
   <p-header>
-    {{fullDescription}}
+    <h3>{{fullDescription}}</h3>
   </p-header>
   <div>
     <p-table>
@@ -14,25 +14,22 @@
           <td>
             <div class="ui-fluid">
               <input type="text" pInputText 
-              [(ngModel)]="authNumber"
-              (keyup)="checkValidation()"
-              (focus)="onFocus('authNumber')"/>
+              [(ngModel)]="dosage"
+              (keyup)="checkValidation()"/>
             </div>
           </td>
           <td>
             <div class="ui-fluid">
               <input type="text" pInputText 
-              [(ngModel)]="authNumber"
-              (keyup)="checkValidation()"
-              (focus)="onFocus('authNumber')"/>
+              [(ngModel)]="frequency"
+              (keyup)="checkValidation()"/>
             </div>
           </td>
           <td>
             <div class="ui-fluid">
               <input type="text" pInputText 
-              [(ngModel)]="authNumber"
-              (keyup)="checkValidation()"
-              (focus)="onFocus('authNumber')"/>
+              [(ngModel)]="cycles"
+              (keyup)="checkValidation()"/>
             </div>
           </td>
         </tr>
@@ -40,6 +37,6 @@
     </p-table>
   </div>
   <p-footer>
-    Footer content here
+    <p-button [disabled]="!showButton" label="Click" (onClick)="storeProductDetails()"></p-button>
   </p-footer>
 </p-panel>

@@ -13,15 +13,33 @@ export class ProductNewComponent implements OnInit {
 
   fullDescription: string = "";
 
-  dosage:string;
-  frequency:string;
-  cycles:string;
+  dosage:number = null
+  frequency:number = null;
+  cycles:number = null;
 
   ngOnInit() {
     console.log('from product new component');
     console.log(this.productModel);
     this.fullDescription = this.productModel.FullDescription;
   }
-  
+  showButton:boolean = false;
 
+  checkValidation(){
+    var value = true;
+    if(this.dosage === null){
+      value = false;
+    }
+    if(this.frequency === null){
+      value = false;
+    }
+    if(this.cycles === null){
+      value = false;
+    }
+    this.showButton = value;
+    console.log(value);
+  }
+
+  storeProductDetails(){
+    console.log('this is a test');
+  }
 }

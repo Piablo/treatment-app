@@ -20,9 +20,11 @@
         </tr>
       </ng-template>
     </p-table>
+    <div>
+      <app-product-search *ngIf="showProductSearch" (toggleView)="toggleView($event)"></app-product-search>
+      <app-product-new *ngIf="!showProductSearch" [productModel]="productModel"></app-product-new>
+    </div>
     
-    <app-product-search *ngIf="showProductSearch" (toggleView)="toggleView($event)"></app-product-search>
-    <app-product-new *ngIf="!showProductSearch" [productModel]="productModel"></app-product-new>
     
   </p-card>
 </div>
