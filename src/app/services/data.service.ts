@@ -23,12 +23,14 @@ export class DataService {
     var base = 'https://tpapi01.azurewebsites.net/';
     var uri = base + url + field + '=' + query;
 
+    console.log(uri);
+
     let headers: Headers = new Headers();
     headers.append('Authorization', 'A93reRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=');
 
     return this.http.get(uri, {headers: headers})
     .toPromise()
     .then(res => <any[]> res.json())
-    .then(data => { return data; });
+    .then(data => { return data; })
   }
 }

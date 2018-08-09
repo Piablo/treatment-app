@@ -1,0 +1,45 @@
+<p-panel >
+  <p-header>
+    {{fullDescription}}
+  </p-header>
+  <div>
+    <p-table [value]="cars">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Dosage</th>
+          <th>Frequency</th>
+          <th>Cycles</th>
+        </tr>
+        <tr>
+          <td>
+            <div class="ui-fluid">
+              <input type="text" pInputText 
+              [(ngModel)]="authNumber"
+              (keyup)="checkValidation()"
+              (focus)="onFocus('authNumber')"/>
+            </div>
+          </td>
+          <td>
+            <div class="ui-fluid">
+              <input type="text" pInputText 
+              [(ngModel)]="authNumber"
+              (keyup)="checkValidation()"
+              (focus)="onFocus('authNumber')"/>
+            </div>
+          </td>
+          <td>
+            <div class="ui-fluid">
+              <input type="text" pInputText 
+              [(ngModel)]="authNumber"
+              (keyup)="checkValidation()"
+              (focus)="onFocus('authNumber')"/>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <p-footer>
+    Footer content here
+  </p-footer>
+</p-panel>

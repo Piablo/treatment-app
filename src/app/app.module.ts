@@ -22,6 +22,7 @@ import { ClientDetailNewComponent } from './components/client-detail/client-deta
 import { ClientDetailContainerComponent } from './components/client-detail/client-detail-container/client-detail-container.component';
 import { ProductContainerComponent } from './components/product/product-container/product-container.component';
 import { ProductSearchComponent } from './components/product/product-search/product-search.component';
+import { ProductNewComponent } from './components/product/product-new/product-new.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ProductSearchComponent } from './components/product/product-search/prod
     ClientDetailNewComponent,
     ClientDetailContainerComponent,
     ProductContainerComponent,
-    ProductSearchComponent
+    ProductSearchComponent,
+    ProductNewComponent
   ],
   imports: [
     BrowserModule,

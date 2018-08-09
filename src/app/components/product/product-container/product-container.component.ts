@@ -11,7 +11,10 @@ import { Product } from '../../../../assets/models/product';
 })
 export class ProductContainerComponent implements OnInit {
 
-  constructor(private http: Http, private patientService: DataService) { }
+  constructor(
+    private http: Http, 
+    private patientService: DataService
+  ) { }
 
   ngOnInit() {
     this.patients.push(this.patientModel);
@@ -20,10 +23,18 @@ export class ProductContainerComponent implements OnInit {
   @Input() patientModel: PatientDetails;
   @Output() addItem = new EventEmitter<Product>();
 
+  showProductSearch:boolean = true;
+
+  productModel: Product;
+
   patients:any[] = [];
   url = '../assets/data/products.json';
   filteredProducts: Product[];
 
+  toggleView(model){
+    this.productModel = model;
+    this.showProductSearch = false;
+  }
 
   //Product Details
   product: Product;
