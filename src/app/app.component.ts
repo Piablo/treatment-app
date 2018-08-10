@@ -24,6 +24,10 @@ export class AppComponent {
         this.patientSearch = false;
       }
     });
+
+    this.sharedService.currentTP.subscribe(res => {
+      console.log(res);
+    })
   }
 
   uniqueID:number = 11111;

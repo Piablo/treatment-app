@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Protocol } from '../../../../assets/models/protocol';
+import { SharedService } from '../../../services/shared.service';
 
 @Component({
   selector: 'app-product-new',
@@ -9,7 +11,7 @@ export class ProductNewComponent implements OnInit {
 
   @Input() productModel;
 
-  constructor() { }
+  constructor(private sharedService: SharedService) { }
 
   fullDescription: string = "";
 
@@ -40,6 +42,10 @@ export class ProductNewComponent implements OnInit {
   }
 
   storeProductDetails(){
-    console.log('this is a test');
+    var value: Protocol = {
+      Description: this.productModel.Description
+    }
+
+    this.sharedService.emitTP(value);
   }
 }
