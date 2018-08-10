@@ -15,6 +15,7 @@ export class ProductNewComponent implements OnInit {
 
   fullDescription: string = "";
 
+  products;
   dosage:number = null
   frequency:number = null;
   cycles:number = null;

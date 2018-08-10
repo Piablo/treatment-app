@@ -1,15 +1,28 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { DataService } from '../../../services/data.service';
 import { Product } from '../../../../assets/models/product'
 
 @Component({
   selector: 'app-product-search',
   templateUrl: './product-search.component.html',
-  styleUrls: ['./product-search.component.css']
+  styleUrls: ['./product-search.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProductSearchComponent implements OnInit {
+
+  cities:any[];
   
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) {
+
+    this.cities = [
+      {label:'Select City', value:null},
+      {label:'New York', value:{id:1, name: 'New York', code: 'NY'}},
+      {label:'Rome', value:{id:2, name: 'Rome', code: 'RM'}},
+      {label:'London', value:{id:3, name: 'London', code: 'LDN'}},
+      {label:'Istanbul', value:{id:4, name: 'Istanbul', code: 'IST'}},
+      {label:'Paris', value:{id:5, name: 'Paris', code: 'PRS'}}
+  ];
+   }
   
   ngOnInit() {
   }

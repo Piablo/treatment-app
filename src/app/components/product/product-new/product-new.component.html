@@ -1,16 +1,59 @@
-<p-panel >
-  <p-header>
-    {{fullDescription}}
-  </p-header>
-  <div>
-    <p-table>
+<p-card [style]="{'background-color':'rgb(225, 225, 225)'}">
+    <p-table [value]="products">
       <ng-template pTemplate="header">
         <tr>
+          <th>Nappi</th>
+          <th>Product</th>
+          <th>Active</th>
           <th>Dosage</th>
           <th>Frequency</th>
-          <th>Cycles</th>
+          <th>Repeat</th>
         </tr>
         <tr>
+          <td>
+            <div>
+              <div class="ui-fluid">
+                
+                <p-autoComplete 
+                styleClass="autoComplete-custom"
+                [(ngModel)]="product" 
+                [suggestions]="filteredProducts" 
+                (completeMethod)="filterProductSingle($event, 'nappi')" 
+                (onSelect)="onSelect($event)"
+                field="FullDescription" 
+                [size]="30"
+                [minLength]="5"></p-autoComplete>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div>
+              <div class="ui-fluid">
+                <p-autoComplete 
+                [(ngModel)]="product" 
+                [suggestions]="filteredProducts" 
+                (completeMethod)="filterProductSingle($event, 'productName')" 
+                (onSelect)="onSelect($event)"
+                field="FullDescription" 
+                [size]="30"
+                [minLength]="1"></p-autoComplete>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div>
+              <div class="ui-fluid">
+                <p-autoComplete 
+                [(ngModel)]="product" 
+                [suggestions]="filteredProducts" 
+                (completeMethod)="filterProductSingle($event, 'active')" 
+                (onSelect)="onSelect($event)"
+                field="Description" 
+                [size]="30"
+                [minLength]="1"></p-autoComplete>
+              </div>
+            </div>
+          </td>
           <td>
             <div class="ui-fluid">
               <input type="text" pInputText 
@@ -21,22 +64,23 @@
           <td>
             <div class="ui-fluid">
               <input type="text" pInputText 
-              [(ngModel)]="frequency"
+              [(ngModel)]="dosage"
               (keyup)="checkValidation()"/>
             </div>
           </td>
           <td>
             <div class="ui-fluid">
               <input type="text" pInputText 
-              [(ngModel)]="cycles"
+              [(ngModel)]="dosage"
               (keyup)="checkValidation()"/>
             </div>
           </td>
         </tr>
       </ng-template>
     </p-table>
-  </div>
-  <p-footer>
-    <p-button [disabled]="!showButton" label="Click" (onClick)="storeProductDetails()"></p-button>
-  </p-footer>
-</p-panel>
+    <div>testing</div>
+    
+  </p-card>
+  
+  
+  
