@@ -3,7 +3,7 @@
     <ng-template pTemplate="header">
       <tr>
         <th>Nappi</th>
-        <th>Product</th>
+        <th>Description</th>
         <th>Active</th>
         <th>Dosage</th>
         <th>Frequency</th>
@@ -57,29 +57,24 @@
         <td>
           <div class="ui-fluid">
             <input type="text" pInputText 
-            [(ngModel)]="dosage"
-            (keyup)="checkValidation()"/>
+            [(ngModel)]="dosage"/>
           </div>
         </td>
         <td>
           <div class="ui-fluid">
             <input type="text" pInputText 
-            [(ngModel)]="dosage"
-            (keyup)="checkValidation()"/>
+            [(ngModel)]="dosage"/>
           </div>
         </td>
         <td>
           <div class="ui-fluid">
             <input type="text" pInputText 
-            [(ngModel)]="dosage"
-            (keyup)="checkValidation()"/>
+            [(ngModel)]="dosage"/>
           </div>
         </td>
       </tr>
     </ng-template>
   </p-table>
-  <div>testing</div>
-  
 </p-card>
 
 

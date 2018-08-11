@@ -1,31 +1,35 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { Protocol } from '../../../../assets/models/protocol';
 import { SharedService } from '../../../services/shared.service';
 
 @Component({
   selector: 'app-product-new',
   templateUrl: './product-new.component.html',
-  styleUrls: ['./product-new.component.css']
+  styleUrls: ['./product-new.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProductNewComponent implements OnInit {
 
   @Input() productModel;
+  @Output() emitProductModel = new EventEmitter<boolean>();
 
   constructor(private sharedService: SharedService) { }
 
-  fullDescription: string = "";
-
-  products;
+  products:any[] = [];
+  disabled:boolean = true;
+  nappi:string = null;
+  description:string = null;
+  active:string = null;
   dosage:number = null
   frequency:number = null;
   cycles:number = null;
 
   ngOnInit() {
-    console.log('from product new component');
-    console.log(this.productModel);
-    this.fullDescription = this.productModel.FullDescription;
+    this.products.push(this.productModel);
+    this.nappi = this.products[0].Nappi;
+    this.description = this.products[0].Description;
+    this.active = this.products[0].Active;
   }
-  showButton:boolean = false;
 
   checkValidation(){
     var value = true;
@@ -38,8 +42,9 @@ export class ProductNewComponent implements OnInit {
     if(this.cycles === null){
       value = false;
     }
-    this.showButton = value;
-    console.log(value);
+    if(value){
+      this.emitProductModel.emit(value);
+    }
   }
 
   storeProductDetails(){

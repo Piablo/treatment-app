@@ -18,14 +18,16 @@ export class ProductContainerComponent implements OnInit {
 
   ngOnInit() {
     this.patients.push(this.patientModel);
+    console.log(this.patients);
   }
 
   @Input() patientModel: PatientDetails;
   @Output() addItem = new EventEmitter<Product>();
 
   showProductSearch:boolean = true;
-
+  disabled:boolean = true;
   productModel: Product;
+  enableButton:boolean = false;
 
   patients:any[] = [];
   url = '../assets/data/products.json';
@@ -34,6 +36,12 @@ export class ProductContainerComponent implements OnInit {
   toggleView(model){
     this.productModel = model;
     this.showProductSearch = false;
+  }
+
+  emitProductModel(model){
+    console.log('from product container');
+    console.log(model);
+    this.enableButton = true;
   }
 
   //Product Details
@@ -48,4 +56,8 @@ export class ProductContainerComponent implements OnInit {
 
   //form state
   productSelected:boolean = false;
+
+  saveTreatment(){
+    console.log('this is a test');
+  }
 }

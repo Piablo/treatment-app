@@ -15,6 +15,7 @@ import {CardModule} from 'primeng/card';
 import {ToolbarModule} from 'primeng/toolbar';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
 import {ListboxModule} from 'primeng/listbox';
+import {TooltipModule} from 'primeng/tooltip';
 
 //Components
 import { AppComponent } from './app.component';
@@ -49,7 +50,8 @@ import { ProductNewComponent } from './components/product/product-new/product-ne
     CardModule,
     ToolbarModule,
     ScrollPanelModule,
-    ListboxModule
+    ListboxModule,
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
