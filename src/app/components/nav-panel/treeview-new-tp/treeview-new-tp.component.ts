@@ -49,7 +49,6 @@ export class TreeviewNewTPComponent implements OnInit {
       leaf: false
     }
     return value;
-    console.log(this.filesTree);
   }
 
   filesTree: TreeNode[] = [];
