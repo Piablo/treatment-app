@@ -18,7 +18,6 @@ export class ProductContainerComponent implements OnInit {
 
   ngOnInit() {
     this.patients.push(this.patientModel);
-    console.log(this.patients);
   }
 
   @Input() patientModel: PatientDetails;
@@ -39,8 +38,6 @@ export class ProductContainerComponent implements OnInit {
   }
 
   emitProductModel(model){
-    console.log('from product container');
-    console.log(model);
     this.enableButton = true;
   }
 
@@ -58,6 +55,8 @@ export class ProductContainerComponent implements OnInit {
   productSelected:boolean = false;
 
   saveTreatment(){
-    console.log('this is a test');
+    console.log('over here!!');
+    console.log(this.patients);
+    console.log(this.productModel);
   }
 }

@@ -21,11 +21,22 @@
       </ng-template>
     </p-table>
     <span>
-      <app-product-search *ngIf="showProductSearch" (toggleView)="toggleView($event)"></app-product-search>
-      <app-product-new *ngIf="!showProductSearch" (emitProductModel)="emitProductModel($event)" [productModel]="productModel" ></app-product-new>
+      <app-product-search 
+      *ngIf="showProductSearch" 
+      (toggleView)="toggleView($event)"></app-product-search>
+
+      <app-product-new 
+      *ngIf="!showProductSearch" 
+      (emitProductModel)="emitProductModel($event)" 
+      [productModel]="productModel" ></app-product-new>
     </span>
+
     <p-footer>
-      <p-button label="Click" [disabled]="!enableButton" (onClick)="saveTreatment()"></p-button>
+      <p-button 
+      label="Click" 
+      [disabled]="!enableButton" 
+      (onClick)="saveTreatment()"></p-button>
+      
     </p-footer>
   </p-card>
 </div>

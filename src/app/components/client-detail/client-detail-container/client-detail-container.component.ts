@@ -12,16 +12,20 @@ export class ClientDetailContainerComponent implements OnInit {
   constructor(private sharedService: SharedService) { }
 
   ngOnInit() {
+    this.sharedService.currentAddClientState.subscribe(res =>{
+      this.showAutocomplete = res;
+    })
   }
-  showAutocomplete:boolean = true;
+  showAutocomplete:boolean;
   patientDetails:PatientDetails;
 
   populateModel(model){
     this.patientDetails = model;
-    this.showAutocomplete = false;
+    this.sharedService.setApplicationState('clientComponent', false);
+    //this.showAutocomplete = false;
   }
   showAutoComplete(event){
-    this.showAutocomplete = true;
+    this.sharedService.setApplicationState('clientComponent', true);
   }
   updateModel(event){
   }

@@ -1,0 +1,26 @@
+{
+    "data": 
+    [
+        {
+            "label": "TP-1234",
+            "data": "treatmentProtocol",
+            "expandedIcon": "fa fa-folder-open",
+            "collapsedIcon": "fa fa-folder",
+            "leaf": false
+        },
+        {
+            "label": "TP-1235",
+            "data": "treatmentProtocol",
+            "expandedIcon": "fa fa-folder-open",
+            "collapsedIcon": "fa fa-folder",
+            "leaf": false
+        },
+        {
+            "label": "TP-1236",
+            "data": "treatmentProtocol",
+            "expandedIcon": "fa fa-folder-open",
+            "collapsedIcon": "fa fa-folder",
+            "leaf": false
+        }
+    ]
+}

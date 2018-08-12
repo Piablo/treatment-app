@@ -45,13 +45,11 @@ export class ProductSearchComponent implements OnInit {
 
     this.dataService.get(this.url, inputField, query).then(products => {
       this.filteredProducts = this.filterProduct(query, products, inputField);
-      console.log(this.filteredProducts);
       this.updateModel(products);
     });
   }
 
   updateModel(responceModel){
-    console.log(responceModel);
   }
 
   onSelect(event){

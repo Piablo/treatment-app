@@ -28,7 +28,15 @@ export class AppComponent {
     this.sharedService.currentTP.subscribe(res => {
       console.log(res);
     })
+    this.sharedService.currentTreeviewState.subscribe(res => {
+      this.buttonState = res;
+    })
+    this.sharedService.currentAddProductState.subscribe(res =>{
+      this.patientSearch = res;
+    })
   }
+
+  buttonState:boolean = false;
 
   uniqueID:number = 11111;
   products: Product[] = [];
@@ -59,5 +67,12 @@ export class AppComponent {
     this.treatmentProtocols.push(value);
     this.products = [];
     this.uniqueID++;
+  }
+
+  cancelProtocol(){
+    this.buttonState = true;
+    this.sharedService.emitTreeviewState(true);
+    this.sharedService.setApplicationState('clientComponent', true);
+    this.sharedService.setApplicationState('patientSearch',false);
   }
 }

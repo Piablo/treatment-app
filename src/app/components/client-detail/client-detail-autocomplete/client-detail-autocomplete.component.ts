@@ -3,6 +3,7 @@ import { DataService } from '../../../services/data.service';
 import { PatientDetails } from '../../../../assets/models/patient';
 import { SharedService } from '../../../services/shared.service';
 import { StringService } from '../../../services/string.service';
+import { debug } from 'util';
 
 @Component({
   selector: 'app-client-detail-autocomplete',
@@ -24,35 +25,40 @@ export class ClientDetailAutocompleteComponent implements OnInit {
   
   @Output() addMedicationInfo = new EventEmitter<PatientDetails>();
   @Output() populateModel = new EventEmitter<PatientDetails>();
- // @ViewChild('firstname') firstname: ElementRef;
   
   //Application State
   patientSelected:boolean = false;
   firstNameSelected:boolean = false;
-  
-  //Patient Details
+
+  //Input Fields
   FirstName:string = "";
-  IDNumber:number = null;
-  MedicalAidName: string = "";
-  MedicalAidNumber:number = null;
-  PersonID:number = null;
   Surname:string = "";
-  TreatmentProtocols:string = "";
+  MedicalAidNumber:number = null;
   UnisolveProfileNumber:number = null;
+  IDNumber:number = null;
+
+
+  //Patient Details
   
+  MedicalAidName: string = "";
+  PersonID:number = null;
+  TreatmentProtocols:string = "";
   currentFocusedField:string = "";
+  currentlyFocused:string = "";
+  currentEnteredText:string = "";
   
   //Models
   patient: PatientDetails;
   filteredPatients: any[];
+  filteredCountriesSingle: any[];
+  url = 'api/treatmentprotocolpersons/Search?searchOptions.';
   
   acceptPatient(){
     this.addMedicationInfo.emit(this.patient);
   }
-  currentlyFocused:string = "";
-  currentEnteredText:string = "";
   
   onSelect(event){
+    this.sharedService.emitTreeviewState(false);
     this.patient = event;
     this.sharedService.emitPatient(this.patient);
     this.acceptPatient();
@@ -61,10 +67,10 @@ export class ClientDetailAutocompleteComponent implements OnInit {
   formatUserEnteredString(){
     var lower = this.FirstName.toLowerCase();
     this.FirstName = lower.charAt(0).toUpperCase() + lower.substr(1);
-    
     var lower = this.Surname.toLowerCase();
     this.Surname = lower.charAt(0).toUpperCase() + lower.substr(1);
   }
+
   enterNewPatientDetails(){
     
     this.formatUserEnteredString();
@@ -83,7 +89,6 @@ export class ClientDetailAutocompleteComponent implements OnInit {
     this.patient = value;
     this.acceptPatient();
   }
-  filteredCountriesSingle: any[];
   
   clearInputs(){
     this.patient.FullName = "";
@@ -92,14 +97,13 @@ export class ClientDetailAutocompleteComponent implements OnInit {
     this.UnisolveProfileNumber = null;
   }
 
-  url = 'api/treatmentprotocolpersons/Search?searchOptions.';
-
   filterCountrySingle(event, fieldName) {
     let query = event.query;
     this.dataService.get(this.url, fieldName, query).then(countries => {
       this.filteredCountriesSingle = this.filterCountry(query, countries,fieldName);
     });
   }
+
   filterCountry(query, patients: any[], fieldName):any[]  {
     //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
     let filtered : any[] = [];
@@ -128,6 +132,7 @@ export class ClientDetailAutocompleteComponent implements OnInit {
     }
     return filtered;
   }
+
   populateData(country){
     var value = {
       PersonID: country.PersonID,
@@ -142,6 +147,7 @@ export class ClientDetailAutocompleteComponent implements OnInit {
     }
     return value;
   }
+
   checkForPopulatedFields(){
     var value:boolean = false;
     
@@ -161,6 +167,7 @@ export class ClientDetailAutocompleteComponent implements OnInit {
     }
     return value;
   }
+
   onFocus(selectedField){
     if(this.checkForPopulatedFields()){
       var value = this.populateData(this);

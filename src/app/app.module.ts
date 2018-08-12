@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule, } from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import {TreeModule} from 'primeng/tree';
+import {TreeNode} from 'primeng/api';
 
 //PrimeNG
 import {AutoCompleteModule} from 'primeng/autocomplete';
@@ -25,6 +27,9 @@ import { ClientDetailContainerComponent } from './components/client-detail/clien
 import { ProductContainerComponent } from './components/product/product-container/product-container.component';
 import { ProductSearchComponent } from './components/product/product-search/product-search.component';
 import { ProductNewComponent } from './components/product/product-new/product-new.component';
+import { TreeviewComponent } from './components/nav-panel/treeview/treeview.component';
+import { NavContainerComponent } from './components/nav-panel/nav-container/nav-container.component';
+import { TreeviewNewTPComponent } from './components/nav-panel/treeview-new-tp/treeview-new-tp.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,10 @@ import { ProductNewComponent } from './components/product/product-new/product-ne
     ClientDetailContainerComponent,
     ProductContainerComponent,
     ProductSearchComponent,
-    ProductNewComponent
+    ProductNewComponent,
+    TreeviewComponent,
+    NavContainerComponent,
+    TreeviewNewTPComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +59,8 @@ import { ProductNewComponent } from './components/product/product-new/product-ne
     ToolbarModule,
     ScrollPanelModule,
     ListboxModule,
-    TooltipModule
+    TooltipModule,
+    TreeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

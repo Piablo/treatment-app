@@ -21,4 +21,25 @@ export class SharedService {
   emitTP(protocol: Protocol){
     this.tpSource.next(protocol);
   }
+
+  private treeviewState = new BehaviorSubject<boolean>(true);
+  currentTreeviewState = this. treeviewState.asObservable();
+  emitTreeviewState(currentState:boolean){
+    this.treeviewState.next(currentState);
+  }
+
+  private addClientState = new BehaviorSubject<boolean>(true);
+  currentAddClientState = this.addClientState.asObservable();
+  
+  private addProductState = new BehaviorSubject<boolean>(true);
+  currentAddProductState = this.addProductState.asObservable();
+
+  setApplicationState(currentComponent: string, componentState){
+    if(currentComponent === 'clientComponent'){
+      this.addClientState.next(componentState);
+    }
+    else if(currentComponent === 'patientSearch'){
+      this.addProductState.next(!componentState);
+    }
+  }
 }

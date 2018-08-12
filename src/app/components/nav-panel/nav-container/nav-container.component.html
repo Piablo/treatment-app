@@ -1,0 +1,12 @@
+<p-card subtitle="Treatment Protocol"
+[style]="{'background-color':'rgb(225, 225, 225)', 
+'margin-top': '5px',
+'height':'83vh'}">
+
+<p-scrollPanel [style]="{width: '100%', 
+'background-color':'rgb(245, 245, 245)', 
+'height': '73vh'}">
+<app-treeview *ngIf="showHistoricView"></app-treeview>
+<app-treeview-new-tp *ngIf="!showHistoricView"></app-treeview-new-tp>
+</p-scrollPanel>
+</p-card>

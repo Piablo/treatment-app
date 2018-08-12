@@ -1,0 +1,12 @@
+{
+    "data": 
+    [
+        {
+            "label": "Groups",
+            "data": "root",
+            "expandedIcon": "fa fa-folder-open",
+            "collapsedIcon": "fa fa-folder",
+            "leaf": false
+        }
+    ]
+}
