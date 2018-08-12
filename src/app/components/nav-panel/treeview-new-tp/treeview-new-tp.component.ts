@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../../../services/shared.service';
+import { TreeNode } from '../../../../assets/models/treenode';
+
+
 
 @Component({
   selector: 'app-treeview-new-tp',
@@ -15,6 +18,8 @@ export class TreeviewNewTPComponent implements OnInit {
       console.log(res);
       this.initilizeGroup(res);
     })
+    
+    this.filesTree.push(this.initilizeData());
   }
   initilizeGroup(patient){
     var value = this.searchExistingGroupByPatient(patient);
@@ -34,5 +39,27 @@ export class TreeviewNewTPComponent implements OnInit {
     console.log('Searching group by patient...')
     return value;
   }
+
+  initilizeData(){
+    var value = {
+      label: "G-12345",
+      data: "Node 0",
+      expandedIcon: "fa fa-folder-open",
+      collapsedIcon: "fa fa-folder",
+      leaf: false
+    }
+    return value;
+    console.log(this.filesTree);
+  }
+
+  filesTree: TreeNode[] = [];
+
+  nodeExpand(event) {
+    if(event.node) {
+      console.log(event);
+        //in a real application, make a call to a remote url to load children of the current node and add the new nodes as children
+        event.node.children.push(this.initilizeData());
+    }
+}
 
 }
