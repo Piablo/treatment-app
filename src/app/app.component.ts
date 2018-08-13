@@ -59,12 +59,8 @@ export class AppComponent {
     this.patientModel = event;
     this.patientSearch = false;
   }
-
   editProtocol(event){
   }
-
-  
-  
   submitProtocol(){
     this.patientSearch = true;
 
@@ -78,7 +74,6 @@ export class AppComponent {
     this.sharedService.emitTreeviewState(true);
     this.router.navigate(['add-patient']);
   }
-
   cancelProtocol(){
     this.buttonState = true;
     this.sharedService.emitTreeviewState(true);

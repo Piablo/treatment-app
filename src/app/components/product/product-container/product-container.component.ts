@@ -44,7 +44,6 @@ export class ProductContainerComponent implements OnInit {
   disabled:boolean = true;
   productModel: Product;
   enableButton:boolean;
-  
   patients:any[] = [];
   url = '../assets/data/products.json';
   filteredProducts: Product[];

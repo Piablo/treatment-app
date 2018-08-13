@@ -30,6 +30,7 @@
           <div>
             <div class="ui-fluid">
               <p-autoComplete 
+              styleClass="autoComplete-custom"
               [(ngModel)]="product" 
               [suggestions]="filteredProducts" 
               (completeMethod)="filterProductSingle($event, 'productName')" 
@@ -44,11 +45,12 @@
           <div>
             <div class="ui-fluid">
               <p-autoComplete 
+              styleClass="autoComplete-custom"
               [(ngModel)]="product" 
               [suggestions]="filteredProducts" 
               (completeMethod)="filterProductSingle($event, 'active')" 
               (onSelect)="onSelect($event)"
-              field="Description" 
+              field="FullDescription" 
               [size]="30"
               [minLength]="1"></p-autoComplete>
             </div>

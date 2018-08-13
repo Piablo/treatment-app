@@ -77,6 +77,13 @@ export class ProductSearchComponent implements OnInit {
           filtered.push(value);
         }
       }
+      else if(inputField === 'active'){
+        if(product.Active.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+          filtered.push(product);
+          value = this.populateData(product);
+          filtered.push(value);
+        }
+      }
     }
     return filtered;
   }
