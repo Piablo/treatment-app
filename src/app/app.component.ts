@@ -18,6 +18,7 @@ export class AppComponent {
   constructor(private patientService: DataService, private sharedService: SharedService){
   }
   ngOnInit(){
+    console.log('app-component');
     this.sharedService.currentPatient.subscribe(res => {
       if(res !== null){
         this.patientModel = res;
@@ -26,7 +27,6 @@ export class AppComponent {
     });
 
     this.sharedService.currentTP.subscribe(res => {
-      console.log(res);
     })
     this.sharedService.currentTreeviewState.subscribe(res => {
       this.buttonState = res;

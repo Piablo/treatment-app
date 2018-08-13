@@ -34,6 +34,7 @@ export class ClientDetailNewComponent implements OnInit {
   patientSelected:boolean = false;
   
   ngOnInit() {
+    console.log('client-new');
     this.initilizeData();
   }
   

@@ -16,6 +16,7 @@ export class TreeviewNewTPComponent implements OnInit {
   tpID:number = 55555;
 
   ngOnInit() {
+    console.log('treeview-new');
     this.sharedService.currentPatient.subscribe(res => {
       console.log(res);
       this.initilizeGroup(res);

@@ -25,6 +25,7 @@ export class ProductNewComponent implements OnInit {
   cycles:number = null;
 
   ngOnInit() {
+    console.log('product-new');
     this.products.push(this.productModel);
     this.nappi = this.products[0].Nappi;
     this.description = this.products[0].Description;

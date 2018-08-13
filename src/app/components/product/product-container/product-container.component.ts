@@ -19,9 +19,13 @@ export class ProductContainerComponent implements OnInit {
   ) { }
   
   ngOnInit() {
+    console.log('product-container');
     this.patients.push(this.patientModel);
     this.sharedService.productState.subscribe(res =>{
-      console.log('from product container');
+      this.showProductSearch = res;
+      this.enableButton = !res;
+    })
+    this.sharedService.showProductSearch.subscribe(res =>{
       this.showProductSearch = res;
     })
   }
@@ -32,7 +36,7 @@ export class ProductContainerComponent implements OnInit {
   showProductSearch:boolean;
   disabled:boolean = true;
   productModel: Product;
-  enableButton:boolean = false;
+  enableButton:boolean;
   
   patients:any[] = [];
   url = '../assets/data/products.json';
@@ -63,6 +67,8 @@ export class ProductContainerComponent implements OnInit {
   saveTreatment(){
     this.sharedService.pushProductToTree(this.productModel);
     this.sharedService.setApplicationState('clientComponent', true);
-    this.sharedService.setApplicationState('patientSearch', false);
+    this.sharedService.setApplicationState('patientSearch', true);
+    this.sharedService.setShowProductSearch(true);
+
   }
 }

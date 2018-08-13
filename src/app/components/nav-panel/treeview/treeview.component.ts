@@ -17,6 +17,7 @@ export class TreeviewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('treeview');
     this.dataService.getLazyFiles('files-lazy.json').then(files => this.lazyFiles = files);
     
   }
@@ -24,11 +25,9 @@ export class TreeviewComponent implements OnInit {
   lazyFiles: TreeNode[];
 
   testing(event){
-    console.log(event);
   }
 
   nodeExpand(event) {
-    console.log(event.node.data);
     if(event.node) {
       var navString = event.node.data;
 

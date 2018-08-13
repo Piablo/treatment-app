@@ -56,4 +56,10 @@ export class SharedService {
     this.productTree.next(currentProduct);
   }
 
+  private productSearchState = new BehaviorSubject<boolean>(true);
+  showProductSearch = this.productSearchState.asObservable();
+  setShowProductSearch(state:boolean){
+    this.productSearch.next(state);
+  }
+
 }

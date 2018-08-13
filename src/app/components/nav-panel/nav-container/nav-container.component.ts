@@ -11,6 +11,7 @@ export class NavContainerComponent implements OnInit {
   constructor(private sharedService: SharedService) { }
   
   ngOnInit() {
+    console.log('nav-container');
     this.sharedService.currentTreeviewState.subscribe(res =>{
       this.showHistoricView = res;
     })

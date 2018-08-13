@@ -18,6 +18,7 @@ export class ClientDetailAutocompleteComponent implements OnInit {
     private stringService: StringService) { }
   
   ngOnInit() {
+    console.log('client-autocomplete');
   }
 
   ngAfterViewInit() {
