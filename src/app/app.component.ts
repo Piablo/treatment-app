@@ -75,6 +75,8 @@ export class AppComponent {
     this.treatmentProtocols.push(value);
     this.products = [];
     this.uniqueID++;
+    this.sharedService.emitTreeviewState(true);
+    this.router.navigate(['add-patient']);
   }
 
   cancelProtocol(){
@@ -82,6 +84,7 @@ export class AppComponent {
     this.sharedService.emitTreeviewState(true);
     this.sharedService.setApplicationState('clientComponent', true);
     this.sharedService.setApplicationState('patientSearch',false);
+    this.sharedService.emitTreeviewState(true);
     this.router.navigate(['add-patient']);
   }
 }
