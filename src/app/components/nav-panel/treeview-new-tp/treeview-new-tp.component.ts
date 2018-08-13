@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../../../services/shared.service';
 import { TreeNode } from '../../../../assets/models/treenode';
-
+import { LocalStorage } from '@ngx-pwa/local-storage';
 
 
 @Component({
@@ -10,8 +10,10 @@ import { TreeNode } from '../../../../assets/models/treenode';
   styleUrls: ['./treeview-new-tp.component.css']
 })
 export class TreeviewNewTPComponent implements OnInit {
-
-  constructor(private sharedService: SharedService) { }
+  
+  constructor(private sharedService: SharedService, protected localStorage: LocalStorage) { }
+  
+  tpID:number = 55555;
 
   ngOnInit() {
     this.sharedService.currentPatient.subscribe(res => {
@@ -20,6 +22,15 @@ export class TreeviewNewTPComponent implements OnInit {
     })
     
     this.filesTree.push(this.initilizeData());
+    this.sharedService.productArray.subscribe(res => {
+      if(res!==null){
+        console.log(res.Nappi);
+        this.filesTree[0].children.push(this.pushToTree(res.Nappi,'testingData'));
+      }
+      console.log('from treeview');
+      console.log(res);
+      console.log(this.filesTree);
+    })
   }
   initilizeGroup(patient){
     var value = this.searchExistingGroupByPatient(patient);
@@ -29,7 +40,7 @@ export class TreeviewNewTPComponent implements OnInit {
       console.log('No existing group, creating new group...');
       this.createNewGroup();
     }
-
+    
   }
   createNewGroup(){
     console.log('group succesfully created!');
@@ -39,26 +50,40 @@ export class TreeviewNewTPComponent implements OnInit {
     console.log('Searching group by patient...')
     return value;
   }
-
+  
+  pushToTree(label:string, data:string){
+    var value = {
+      label:label,
+      data:data,
+      expandedIcon: "fa fa-folder-open",
+      collapsedIcon: "fa fa-folder",
+      leaf: true,
+    }
+    return value;
+  }
+  
   initilizeData(){
+    var temp:any[] = [];
     var value = {
       label: "G-12345",
       data: "Node 0",
       expandedIcon: "fa fa-folder-open",
       collapsedIcon: "fa fa-folder",
-      leaf: false
+      leaf: false,
+      children: temp
     }
     return value;
   }
-
+  
   filesTree: TreeNode[] = [];
-
+  
   nodeExpand(event) {
     if(event.node) {
       console.log(event);
-        //in a real application, make a call to a remote url to load children of the current node and add the new nodes as children
-        event.node.children.push(this.initilizeData());
+      //in a real application, make a call to a remote url to load children of the current node and add the new nodes as children
+      //debugger;
+      //event.node.children.push(this.initilizeData());
     }
-}
-
+  }
+  
 }

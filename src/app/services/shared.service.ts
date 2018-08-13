@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from '../../../node_modules/rxjs';
 import { PatientDetails } from '../../assets/models/patient';
 import { Protocol } from '../../assets/models/protocol';
+import { Product } from '../../assets/models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -34,12 +35,25 @@ export class SharedService {
   private addProductState = new BehaviorSubject<boolean>(true);
   currentAddProductState = this.addProductState.asObservable();
 
+  private productSearch = new BehaviorSubject<boolean>(true);
+  productState = this.productSearch.asObservable();
+
   setApplicationState(currentComponent: string, componentState){
     if(currentComponent === 'clientComponent'){
       this.addClientState.next(componentState);
     }
     else if(currentComponent === 'patientSearch'){
       this.addProductState.next(!componentState);
+    }else if(currentComponent === 'showProductSearch'){
+      this.productSearch.next(componentState);
     }
   }
+
+  private productTree = new BehaviorSubject<Product>(null);
+  productArray = this.productTree.asObservable();
+
+  pushProductToTree(currentProduct:Product){
+    this.productTree.next(currentProduct);
+  }
+
 }

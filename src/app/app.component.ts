@@ -56,6 +56,8 @@ export class AppComponent {
 
   editProtocol(event){
   }
+
+  
   
   submitProtocol(){
     this.patientSearch = true;
