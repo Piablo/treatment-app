@@ -25,12 +25,14 @@
       <p-scrollPanel [style]="{width: '100%', 
       'border-color': 'white',
       'height': '65vh'}">
-      <div *ngIf="patientSearch">
+
+      <router-outlet></router-outlet>
+      <!--<div *ngIf="patientSearch">
           <app-client-detail-container (addMedicationInfo)="addMedicationInfo($event)"></app-client-detail-container>
       </div>
       <div *ngIf="!patientSearch">
           <app-product-container [patientModel]="patientModel" (addItem)="addItem($event)"></app-product-container>
-      </div>
+      </div>-->
   </p-scrollPanel>
   
   <p-footer>

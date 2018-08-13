@@ -6,6 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import {TreeModule} from 'primeng/tree';
 import {TreeNode} from 'primeng/api';
+import { RouterModule, Routes } from '@angular/router';
 
 
 //PrimeNG
@@ -32,6 +33,12 @@ import { TreeviewComponent } from './components/nav-panel/treeview/treeview.comp
 import { NavContainerComponent } from './components/nav-panel/nav-container/nav-container.component';
 import { TreeviewNewTPComponent } from './components/nav-panel/treeview-new-tp/treeview-new-tp.component';
 
+
+const appRoutes: Routes = [
+  { path: 'add-patient', component: ClientDetailContainerComponent },
+  { path: 'add-product', component: ProductContainerComponent }
+]
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +54,7 @@ import { TreeviewNewTPComponent } from './components/nav-panel/treeview-new-tp/t
   ],
   imports: [
     BrowserModule,
+    RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     HttpClientModule,
     InputTextModule,
@@ -61,7 +69,8 @@ import { TreeviewNewTPComponent } from './components/nav-panel/treeview-new-tp/t
     ScrollPanelModule,
     ListboxModule,
     TooltipModule,
-    TreeModule
+    TreeModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

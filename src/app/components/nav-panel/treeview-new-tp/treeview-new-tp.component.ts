@@ -17,12 +17,16 @@ export class TreeviewNewTPComponent implements OnInit {
 
   ngOnInit() {
     console.log('treeview-new');
+    //this.sharedService.emitPatient(null);
     this.sharedService.currentPatient.subscribe(res => {
       console.log(res);
-      this.initilizeGroup(res);
+      if(res !==null){
+        this.initilizeGroup(res);
+      }
     })
     
     this.filesTree.push(this.initilizeData());
+    this.sharedService.pushProductToTree(null);
     this.sharedService.productArray.subscribe(res => {
       if(res!==null){
         console.log(res.Nappi);
@@ -59,6 +63,7 @@ export class TreeviewNewTPComponent implements OnInit {
       expandedIcon: "fa fa-folder-open",
       collapsedIcon: "fa fa-folder",
       leaf: true,
+      expanded: true
     }
     return value;
   }
@@ -71,7 +76,8 @@ export class TreeviewNewTPComponent implements OnInit {
       expandedIcon: "fa fa-folder-open",
       collapsedIcon: "fa fa-folder",
       leaf: false,
-      children: temp
+      children: temp,
+      expanded: true
     }
     return value;
   }
@@ -80,11 +86,15 @@ export class TreeviewNewTPComponent implements OnInit {
   
   nodeExpand(event) {
     if(event.node) {
+      console.log('this is the guy');
       console.log(event);
       //in a real application, make a call to a remote url to load children of the current node and add the new nodes as children
       //debugger;
       //event.node.children.push(this.initilizeData());
     }
   }
-  
+
+  nodeSelect(event){
+    console.log(event);
+  }
 }

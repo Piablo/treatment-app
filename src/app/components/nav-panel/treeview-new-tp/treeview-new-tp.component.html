@@ -1,1 +1,1 @@
-<p-tree [value]="filesTree" (onNodeExpand)="nodeExpand($event)" [style]="{'max-height':'200px','overflow':'auto'}"></p-tree>
+<p-tree [value]="filesTree"selectionMode="single" (onNodeSelect)="nodeSelect($event)" [style]="{'max-height':'200px','overflow':'auto'}"></p-tree>

@@ -2,6 +2,7 @@ import { Component} from '@angular/core';
 import { Product } from '../assets/models/product';
 import { DataService } from '../app/services/data.service';
 import { SharedService } from '../app/services/shared.service';
+import { Router } from '@angular/router';
 
 interface TreatmentProtocol {
   protocolId:number;
@@ -15,9 +16,14 @@ interface TreatmentProtocol {
 })
 export class AppComponent {
   
-  constructor(private patientService: DataService, private sharedService: SharedService){
+  constructor(
+    private patientService: DataService, 
+    private sharedService: SharedService,
+    private router: Router
+  ){
   }
   ngOnInit(){
+    this.router.navigate(['add-patient']);
     console.log('app-component');
     this.sharedService.currentPatient.subscribe(res => {
       if(res !== null){
@@ -76,5 +82,6 @@ export class AppComponent {
     this.sharedService.emitTreeviewState(true);
     this.sharedService.setApplicationState('clientComponent', true);
     this.sharedService.setApplicationState('patientSearch',false);
+    this.router.navigate(['add-patient']);
   }
 }

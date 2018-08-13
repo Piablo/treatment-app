@@ -19,8 +19,15 @@ export class ProductContainerComponent implements OnInit {
   ) { }
   
   ngOnInit() {
+    
+    //this.sharedService.emitPatient(null);
+    this.sharedService.currentPatient.subscribe(res =>{
+      console.log('this is what i am looking for');
+      console.log(res);
+      this.patients.push(res);
+    })
     console.log('product-container');
-    this.patients.push(this.patientModel);
+    console.log(this.patientModel);
     this.sharedService.productState.subscribe(res =>{
       this.showProductSearch = res;
       this.enableButton = !res;

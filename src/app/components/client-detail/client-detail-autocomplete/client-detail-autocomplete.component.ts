@@ -3,7 +3,7 @@ import { DataService } from '../../../services/data.service';
 import { PatientDetails } from '../../../../assets/models/patient';
 import { SharedService } from '../../../services/shared.service';
 import { StringService } from '../../../services/string.service';
-import { debug } from 'util';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-detail-autocomplete',
@@ -15,7 +15,9 @@ export class ClientDetailAutocompleteComponent implements OnInit {
   constructor(
     private dataService:DataService, 
     private sharedService: SharedService,
-    private stringService: StringService) { }
+    private stringService: StringService,
+    private router: Router
+  ) { }
   
   ngOnInit() {
     console.log('client-autocomplete');
@@ -56,11 +58,15 @@ export class ClientDetailAutocompleteComponent implements OnInit {
   
   acceptPatient(){
     this.addMedicationInfo.emit(this.patient);
+    this.router.navigate(['/add-product']);
   }
   
   onSelect(event){
     this.sharedService.emitTreeviewState(false);
     this.patient = event;
+    console.log('the otehr place I am looking');
+    console.log(this.patient);
+
     this.sharedService.emitPatient(this.patient);
     this.acceptPatient();
   }
