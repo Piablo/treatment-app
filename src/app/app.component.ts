@@ -9,6 +9,13 @@ interface TreatmentProtocol {
   patientName:string;
 }
 
+interface Products {
+  ProductID:number,
+  Dosage:number,
+  Frequency:number,
+  Repeat:number
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -24,7 +31,6 @@ export class AppComponent {
   }
   ngOnInit(){
     this.router.navigate(['add-patient']);
-    console.log('app-component');
     this.sharedService.currentPatient.subscribe(res => {
       if(res !== null){
         this.patientModel = res;
@@ -40,18 +46,29 @@ export class AppComponent {
     this.sharedService.currentAddProductState.subscribe(res =>{
       this.patientSearch = res;
     })
+
+    this.sharedService.currentSubmitGroupState.subscribe(res =>{
+      this.showSubmitGroupButton = res;
+    })
+
+    this.sharedService.productArray.subscribe(res => {
+      if(res!==null){
+        var value = {
+          ProductID:res.ProductID,
+          Dosage:res.Dosage,
+          Frequency:res.Frequency,
+          Repeat:res.CycleLength,
+        }
+        this.products.push(value);
+      }
+    })
   }
-
+  products: Products[] = [];
   buttonState:boolean = false;
-
-  uniqueID:number = 11111;
-  products: Product[] = [];
+  showSubmitGroupButton: boolean;
 
   treatmentProtocols:TreatmentProtocol[] = [];
 
-  addItem(event){
-    this.products.push(event);
-  }
   patientModel:any;
   patientSearch:boolean = true;
 
@@ -61,16 +78,13 @@ export class AppComponent {
   }
   editProtocol(event){
   }
-  submitProtocol(){
+  submitGroup(){
     this.patientSearch = true;
-
     var value = {
-      protocolId:this.uniqueID,
-      patientName: this.patientModel.name
+      PersonID: this.patientModel.PersonID,
+      Products: this.products
     }
-    this.treatmentProtocols.push(value);
-    this.products = [];
-    this.uniqueID++;
+    console.log(value);
     this.sharedService.emitTreeviewState(true);
     this.router.navigate(['add-patient']);
   }

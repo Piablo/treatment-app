@@ -1,9 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PatientDetails } from '../../../../assets/models/patient';
-import { Http} from '@angular/http';
-import { DataService } from '../../../services/data.service';
 import { Product } from '../../../../assets/models/product';
 import { SharedService } from '../../../services/shared.service';
+
 
 @Component({
   selector: 'app-product-container',
@@ -13,8 +12,6 @@ import { SharedService } from '../../../services/shared.service';
 export class ProductContainerComponent implements OnInit {
   
   constructor(
-    private http: Http, 
-    private patientService: DataService,
     private sharedService: SharedService
   ) { }
   
@@ -22,12 +19,8 @@ export class ProductContainerComponent implements OnInit {
     
     //this.sharedService.emitPatient(null);
     this.sharedService.currentPatient.subscribe(res =>{
-      console.log('this is what i am looking for');
-      console.log(res);
       this.patients.push(res);
     })
-    console.log('product-container');
-    console.log(this.patientModel);
     this.sharedService.productState.subscribe(res =>{
       this.showProductSearch = res;
       this.enableButton = !res;
@@ -71,10 +64,15 @@ export class ProductContainerComponent implements OnInit {
   productSelected:boolean = false;
   
   saveTreatment(){
+    this.sharedService.currentUserEnteredDetails.subscribe(res => {
+      this.productModel.Dosage = res.Dosage;
+      this.productModel.Frequency = res.Frequency;
+      this.productModel.CycleLength = res.Repeat;
+    })
     this.sharedService.pushProductToTree(this.productModel);
     this.sharedService.setApplicationState('clientComponent', true);
     this.sharedService.setApplicationState('patientSearch', true);
     this.sharedService.setShowProductSearch(true);
-
+    this.sharedService.setSubmitButtonState(true);
   }
 }

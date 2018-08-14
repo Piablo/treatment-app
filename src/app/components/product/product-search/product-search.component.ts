@@ -25,7 +25,6 @@ export class ProductSearchComponent implements OnInit {
    }
   
   ngOnInit() {
-    console.log('product-search');
   }
 
   @Output() toggleView = new EventEmitter<Product>();

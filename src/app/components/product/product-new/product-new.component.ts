@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { Protocol } from '../../../../assets/models/protocol';
 import { SharedService } from '../../../services/shared.service';
+import { AddedDetails } from '../../../../assets/models/addedDetails';
+
+
 
 @Component({
   selector: 'app-product-new',
@@ -24,8 +27,9 @@ export class ProductNewComponent implements OnInit {
   frequency:number = null;
   cycles:number = null;
 
+  addedDetails:AddedDetails;
+
   ngOnInit() {
-    console.log('product-new');
     this.products.push(this.productModel);
     this.nappi = this.products[0].Nappi;
     this.description = this.products[0].Description;
@@ -44,6 +48,13 @@ export class ProductNewComponent implements OnInit {
       value = false;
     }
     if(value){
+      var value2 = {
+        Dosage: this.dosage,
+        Frequency:this.frequency,
+        Repeat:this.cycles,
+      }
+      this.sharedService.emitUserEnteredProductDetails(value2);
+      
       this.emitProductModel.emit(value);
     }
   }

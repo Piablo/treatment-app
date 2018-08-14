@@ -12,7 +12,6 @@ export class ClientDetailContainerComponent implements OnInit {
   constructor(private sharedService: SharedService) { }
 
   ngOnInit() {
-    console.log('client-container');
     this.sharedService.currentAddClientState.subscribe(res =>{
       this.showAutocomplete = res;
     })

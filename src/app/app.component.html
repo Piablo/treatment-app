@@ -36,7 +36,7 @@
   </p-scrollPanel>
   
   <p-footer>
-      <button pButton type="button" (click)="submitProtocol()" label="Save"></button>
+      <button pButton type="button" [disabled]="!showSubmitGroupButton" (click)="submitGroup()" label="Save"></button>
       <button pButton type="button" [disabled]="buttonState" (click)="cancelProtocol()" label="Cancel"></button>
   </p-footer>
 </p-card>

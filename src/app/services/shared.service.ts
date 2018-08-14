@@ -3,6 +3,7 @@ import { BehaviorSubject } from '../../../node_modules/rxjs';
 import { PatientDetails } from '../../assets/models/patient';
 import { Protocol } from '../../assets/models/protocol';
 import { Product } from '../../assets/models/product';
+import { AddedDetails } from '../../assets/models/addedDetails';
 
 @Injectable({
   providedIn: 'root'
@@ -62,4 +63,16 @@ export class SharedService {
     this.productSearch.next(state);
   }
 
+  private submitGroupButtonState = new BehaviorSubject<boolean>(false);
+  currentSubmitGroupState = this.submitGroupButtonState.asObservable();
+
+  setSubmitButtonState(state: boolean){
+    this.submitGroupButtonState.next(state);
+  }
+  private userEnteredProductDetails = new BehaviorSubject<AddedDetails>(null);
+  currentUserEnteredDetails = this.userEnteredProductDetails.asObservable();
+
+  emitUserEnteredProductDetails(model: AddedDetails){
+    this.userEnteredProductDetails.next(model);
+  }
 }

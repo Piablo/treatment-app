@@ -20,7 +20,6 @@ export class ClientDetailAutocompleteComponent implements OnInit {
   ) { }
   
   ngOnInit() {
-    console.log('client-autocomplete');
   }
 
   ngAfterViewInit() {
@@ -64,8 +63,6 @@ export class ClientDetailAutocompleteComponent implements OnInit {
   onSelect(event){
     this.sharedService.emitTreeviewState(false);
     this.patient = event;
-    console.log('the otehr place I am looking');
-    console.log(this.patient);
 
     this.sharedService.emitPatient(this.patient);
     this.acceptPatient();
