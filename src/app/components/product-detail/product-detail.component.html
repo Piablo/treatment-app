@@ -110,6 +110,20 @@
               </td>
             </tr>
           </ng-template>
+          
+        </p-table>
+        <p-table [value]="productArray">
+          
+          <ng-template pTemplate="body" let-product>
+            <tr>
+              <td><div class="test-style">{{product.Nappi}}</div></td>
+              <td><div class="test-style">{{product.Description}}</div></td>
+              <td><div class="test-style">{{product.Active}}</div></td>
+              <td><div class="test-style">{{product.Dosage}}</div></td>
+              <td><div class="test-style">{{product.Frequency}}</div></td>
+              <td><div class="test-style">{{product.Repeat}}</div></td>
+            </tr>
+          </ng-template>
         </p-table>
       </p-card>  
     </span>

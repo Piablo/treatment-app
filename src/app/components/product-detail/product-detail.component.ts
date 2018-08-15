@@ -51,7 +51,6 @@ export class ProductDetailComponent implements OnInit {
 
     //Validators
     productSelected:boolean = false;
-
     
     saveTreatment(){
       this.productHolder.Dosage = this.dosage;
