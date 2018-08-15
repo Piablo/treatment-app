@@ -30,7 +30,8 @@ export class AppComponent {
   ){
   }
   ngOnInit(){
-    this.router.navigate(['add-patient']);
+    this.router.navigate(['']);
+    //this.router.navigate(['add-patient']);
     this.sharedService.currentPatient.subscribe(res => {
       if(res !== null){
         this.patientModel = res;

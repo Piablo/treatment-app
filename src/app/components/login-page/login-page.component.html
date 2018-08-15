@@ -1,0 +1,13 @@
+<p-dialog appendTo="body" header="Login" [(visible)]="display" [closable]="false" [modal]="true" [width]="280">
+  <div class="ui-g-12">
+    <div class="ui-g-10">
+      <input type="text" placeholder="Use 'test' as username" pInputText [(ngModel)]="username" (keyup)="checkValidation()"/>
+    </div>
+    <div class="ui-g-10">
+      <input type="password" placeholder="Use 'test' as password" pInputText [(ngModel)]="password" (keyup)="checkValidation()"/>
+    </div>
+    <div class="ui-g-10 ui-fluid">
+      <p-button  style="width:196px;" label="Submit" (onClick)="submit()" [disabled]="!showSubmitButton"></p-button>
+    </div>
+  </div>
+</p-dialog>

@@ -20,6 +20,8 @@ import {ToolbarModule} from 'primeng/toolbar';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
 import {ListboxModule} from 'primeng/listbox';
 import {TooltipModule} from 'primeng/tooltip';
+import {DialogModule} from 'primeng/dialog';
+import {ToastModule} from 'primeng/toast';
 
 //Components
 import { AppComponent } from './app.component';
@@ -32,9 +34,11 @@ import { ProductNewComponent } from './components/product/product-new/product-ne
 import { TreeviewComponent } from './components/nav-panel/treeview/treeview.component';
 import { NavContainerComponent } from './components/nav-panel/nav-container/nav-container.component';
 import { TreeviewNewTPComponent } from './components/nav-panel/treeview-new-tp/treeview-new-tp.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
 
 
 const appRoutes: Routes = [
+  { path: '', component: LoginPageComponent },
   { path: 'add-patient', component: ClientDetailContainerComponent },
   { path: 'add-product', component: ProductContainerComponent }
 ]
@@ -50,7 +54,8 @@ const appRoutes: Routes = [
     ProductNewComponent,
     TreeviewComponent,
     NavContainerComponent,
-    TreeviewNewTPComponent
+    TreeviewNewTPComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +75,8 @@ const appRoutes: Routes = [
     ListboxModule,
     TooltipModule,
     TreeModule,
-    
+    DialogModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]
