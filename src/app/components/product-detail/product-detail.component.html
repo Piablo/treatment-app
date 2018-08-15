@@ -117,8 +117,8 @@
           <ng-template pTemplate="body" let-product>
             <tr>
               <td><div class="test-style">{{product.Nappi}}</div></td>
-              <td><div class="test-style">{{product.Description}}</div></td>
-              <td><div class="test-style">{{product.Active}}</div></td>
+              <td><div class="test-style" pTooltip={{product.Description}} tooltipPosition="bottom">{{product.Description}}</div></td>
+              <td><div class="test-style" pTooltip={{product.Active}} tooltipPosition="bottom">{{product.Active}}</div></td>
               <td><div class="test-style">{{product.Dosage}}</div></td>
               <td><div class="test-style">{{product.Frequency}}</div></td>
               <td><div class="test-style">{{product.Repeat}}</div></td>

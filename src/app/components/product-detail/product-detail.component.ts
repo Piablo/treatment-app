@@ -51,15 +51,13 @@ export class ProductDetailComponent implements OnInit {
 
     //Validators
     productSelected:boolean = false;
-    
+
     saveTreatment(){
       this.productHolder.Dosage = this.dosage;
       this.productHolder.Frequency = this.frequency;
       this.productHolder.Repeat = this.repeat;
 
       this.productArray.push(this.productHolder);
-
-      console.log(this.productArray);
       this.sharedService.currentUserEnteredDetails.subscribe(res => {
         console.log(res);
       })
@@ -70,7 +68,8 @@ export class ProductDetailComponent implements OnInit {
       //   this.productModel.Frequency = res.Frequency;
       //   this.productModel.CycleLength = res.Repeat;
       // })
-      // this.sharedService.pushProductToTree(this.productModel);
+      console.log(this.productArray);
+        this.sharedService.pushProductToTree(this.productArray[0]);
       // this.sharedService.setApplicationState('clientComponent', true);
       // this.sharedService.setApplicationState('patientSearch', true);
       // this.sharedService.setShowProductSearch(true);
