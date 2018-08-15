@@ -1,0 +1,37 @@
+<span class="ui-g">
+<div class="ui-g-2 ui-g-nopad">
+    <app-nav-container></app-nav-container>
+</div>
+<div class="ui-g-10 ui-g-nopad">
+  
+  <p-card  
+  [style]="{
+      'border-color': 'white',
+      'margin-top': '5px',
+      'margin-left': '5px',
+      'height': '83vh'}" 
+      subtitle="Enter Patient Details">
+      
+      <p-scrollPanel [style]="{width: '100%', 
+      'border-color': 'white',
+      'height': '65vh'}">
+
+      <!--<router-outlet></router-outlet>
+      <div *ngIf="patientSearch">
+          <app-client-detail-container (addMedicationInfo)="addMedicationInfo($event)"></app-client-detail-container>
+      </div>
+      <div *ngIf="!patientSearch">
+          <app-product-container [patientModel]="patientModel" (addItem)="addItem($event)"></app-product-container>
+      </div>-->
+  </p-scrollPanel>
+  
+  <p-footer>
+      <button pButton type="button" [disabled]="!showSubmitGroupButton" (click)="submitGroup()" label="Save"></button>
+      <button pButton type="button" [disabled]="buttonState" (click)="cancelProtocol()" label="Cancel"></button>
+  </p-footer>
+</p-card>
+
+</div>
+</span>
+
+<!--<app-testing></app-testing>-->
