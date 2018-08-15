@@ -22,6 +22,8 @@ export class ProductDetailComponent implements OnInit {
       this.sharedService.productState.subscribe(res =>{
         this.enableButton = !res;
       })
+
+      //this.productModel = this.populateData(null);
     }
 
     //Vars
@@ -31,31 +33,56 @@ export class ProductDetailComponent implements OnInit {
     nappi:string;
     description:string;
     active:string;
-    dosage:number;
-    frequency:number;
-    repeat:number;
+    dosage:number = null;
+    frequency:number = null;
+    repeat:number = null;
 
     //Models
     productModel: Product;
     patients:any[] = [];
     filteredProducts: Product[];
     products;
+    productHolder;
+    productArray: Product[] = [];
     
     //form state
-    enableButton:boolean;
+    enableButton:boolean = false;
     showAutocompleteFields:boolean = true;
+
+    //Validators
+    productSelected:boolean = false;
+
     
     saveTreatment(){
+      this.productHolder.Dosage = this.dosage;
+      this.productHolder.Frequency = this.frequency;
+      this.productHolder.Repeat = this.repeat;
+
+      this.productArray.push(this.productHolder);
+
+      console.log(this.productArray);
       this.sharedService.currentUserEnteredDetails.subscribe(res => {
-        this.productModel.Dosage = res.Dosage;
-        this.productModel.Frequency = res.Frequency;
-        this.productModel.CycleLength = res.Repeat;
+        console.log(res);
       })
-      this.sharedService.pushProductToTree(this.productModel);
-      this.sharedService.setApplicationState('clientComponent', true);
-      this.sharedService.setApplicationState('patientSearch', true);
-      this.sharedService.setShowProductSearch(true);
-      this.sharedService.setSubmitButtonState(true);
+
+      this.resetFields();
+      // this.sharedService.currentUserEnteredDetails.subscribe(res => {
+      //   this.productModel.Dosage = res.Dosage;
+      //   this.productModel.Frequency = res.Frequency;
+      //   this.productModel.CycleLength = res.Repeat;
+      // })
+      // this.sharedService.pushProductToTree(this.productModel);
+      // this.sharedService.setApplicationState('clientComponent', true);
+      // this.sharedService.setApplicationState('patientSearch', true);
+      // this.sharedService.setShowProductSearch(true);
+      // this.sharedService.setSubmitButtonState(true);
+    }
+
+    resetFields(){
+      this.onTextchanged();
+      this.dosage = null;
+      this.frequency = null;
+      this.repeat = null;
     }
     
     filterProductSingle(event, inputField) {
@@ -67,11 +94,15 @@ export class ProductDetailComponent implements OnInit {
     }
   
     onSelect(event){
-      console.log(event);
       this.showAutocompleteFields = false;
+      this.productSelected = true;
       this.nappi = event.Nappi;
       this.description = event.Description;
       this.active = event.Active;
+      this.productHolder = event;
+
+      event.FullDescription = "";
+      this.checkValidation();
     }
     
     filterProduct(query, products: any[], inputField):any[] {
@@ -122,6 +153,23 @@ export class ProductDetailComponent implements OnInit {
       }
       return value;
     }
-    
+    onTextchanged(){
+      this.showAutocompleteFields = true;
+      this.productSelected = false;
+      this.enableButton = false;
+    }
+    checkValidation(){
+      var value = false;
+      if(this.productSelected){
+        if(this.dosage !== null){
+          if(this.frequency !== null){
+            if(this.repeat !== null){
+              value = true;
+            }
+          }
+        }
+      }
+      this.enableButton = value;
+    }
   }
   

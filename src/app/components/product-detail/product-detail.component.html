@@ -48,7 +48,7 @@
                       [minLength]="5"></p-autoComplete>
                     </div>
                     <div class="ui-fluid" *ngIf="!showAutocompleteFields">
-                        <input type="text" pInputText [(ngModel)]="nappi"/>
+                        <input type="text" pInputText [(ngModel)]="nappi" (keyup)="onTextchanged()"/>
                     </div>
                   </div>
                 </div>
@@ -68,7 +68,7 @@
                       [minLength]="1"></p-autoComplete>
                     </div>
                     <div class="ui-fluid" *ngIf="!showAutocompleteFields">
-                        <input type="text" pInputText [(ngModel)]="description"/>
+                        <input type="text" pInputText [(ngModel)]="description" (keyup)="onTextchanged()"/>
                     </div>
                   </div>
                 </div>
@@ -88,24 +88,24 @@
                       [minLength]="1"></p-autoComplete>
                     </div>
                     <div class="ui-fluid" *ngIf="!showAutocompleteFields">
-                        <input type="text" pInputText [(ngModel)]="active"/>
+                        <input type="text" pInputText [(ngModel)]="active" (keyup)="onTextchanged()"/>
                     </div>
                   </div>
                 </div>
               </td>
               <td>
                 <div class="ui-fluid">
-                  <input type="text" pInputText [(ngModel)]="dosage"/>
+                  <input type="number" pInputText [(ngModel)]="dosage" (keyup)="checkValidation()"/>
                 </div>
               </td>
               <td>
                 <div class="ui-fluid">
-                  <input type="text" pInputText [(ngModel)]="frequency"/>
+                  <input type="number" pInputText [(ngModel)]="frequency" (keyup)="checkValidation()"/>
                 </div>
               </td>
               <td>
                 <div class="ui-fluid">
-                  <input type="text" pInputText [(ngModel)]="repeat"/>
+                  <input type="number" pInputText [(ngModel)]="repeat" (keyup)="checkValidation()"/>
                 </div>
               </td>
             </tr>
