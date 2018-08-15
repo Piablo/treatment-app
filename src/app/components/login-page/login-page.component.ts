@@ -17,6 +17,7 @@ export class LoginPageComponent implements OnInit {
   password:string = "";
 
   showSubmitButton: boolean = false;
+  msgs:any;
 
   checkValidation(){
     var value = true;
@@ -28,12 +29,16 @@ export class LoginPageComponent implements OnInit {
     }
     this.showSubmitButton = value;
   }
-
+  showError() {
+    this.msgs = [];
+    this.msgs.push({severity:'error', summary:'Error Message', detail:'Validation failed'});
+}
+  
   submit(){
     if(this.username === 'test' && this.password === 'test'){
       this.router.navigate(['add-patient']);
     }else{
-      alert("Username or password is incorrect");
+      this.showError();
     }
   }
 }

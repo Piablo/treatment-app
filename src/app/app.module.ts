@@ -21,7 +21,7 @@ import {ScrollPanelModule} from 'primeng/scrollpanel';
 import {ListboxModule} from 'primeng/listbox';
 import {TooltipModule} from 'primeng/tooltip';
 import {DialogModule} from 'primeng/dialog';
-import {ToastModule} from 'primeng/toast';
+import {GrowlModule} from 'primeng/growl';
 
 //Components
 import { AppComponent } from './app.component';
@@ -76,7 +76,7 @@ const appRoutes: Routes = [
     TooltipModule,
     TreeModule,
     DialogModule,
-    ToastModule
+    GrowlModule
   ],
   providers: [],
   bootstrap: [AppComponent]

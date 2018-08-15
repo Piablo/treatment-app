@@ -1,4 +1,5 @@
 <p-dialog appendTo="body" header="Login" [(visible)]="display" [closable]="false" [modal]="true" [width]="280">
+    <p-growl [(value)]="msgs"></p-growl>
   <div class="ui-g-12">
     <div class="ui-g-10">
       <input type="text" placeholder="Use 'test' as username" pInputText [(ngModel)]="username" (keyup)="checkValidation()"/>
