@@ -13,8 +13,8 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
   }
   display:boolean = true;
-  username:string = "";
-  password:string = "";
+  username:string = "test";
+  password:string = "test";
 
   showSubmitButton: boolean = false;
   msgs:any;
@@ -38,6 +38,8 @@ export class LoginPageComponent implements OnInit {
     if(this.username === 'test' && this.password === 'test'){
       this.router.navigate(['add-patient']);
     }else{
+      this.username = "";
+      this.password = "";
       this.showError();
     }
   }

@@ -34,11 +34,6 @@ export class TreeviewComponent implements OnInit {
   ) { }
   lazyFiles: TreeNode[] = [];
   
-  
-  
-  
-  
-  
   ngOnInit() {
     
     var value ={
@@ -47,9 +42,10 @@ export class TreeviewComponent implements OnInit {
       expandedIcon:"fa fa-folder-open",
       label:"Groups",
       leaf:false,
+      expanded:true,
       parent:undefined
     }
-    
+    localStorage.setItem('treenodes','');
     this.lazyFiles.push(value);
   }
   

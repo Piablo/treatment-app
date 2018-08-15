@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef }
 import { PatientDetails } from '../../../../assets/models/patient'
 import { SharedService } from '../../../services/shared.service';
 import { StringService } from '../../../services/string.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-detail-new',
@@ -13,6 +14,7 @@ export class ClientDetailNewComponent implements OnInit {
   constructor(
     private sharedService: SharedService,
     private stringService: StringService,
+    private router: Router
   ) { }
   
   
@@ -103,5 +105,6 @@ export class ClientDetailNewComponent implements OnInit {
     
     this.sharedService.emitPatient(this.patientDetails);
     this.updateModel.emit(this.patientDetails);
+    this.router.navigate(['/add-product']);
   }
 }
