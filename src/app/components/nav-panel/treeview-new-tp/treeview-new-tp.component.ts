@@ -54,6 +54,8 @@ export class TreeviewNewTPComponent implements OnInit {
       leaf: true,
       expanded: true
     }
+    var jsonValue = JSON.stringify(value);
+    localStorage.setItem('treenodes',jsonValue);
     return value;
   }
   
