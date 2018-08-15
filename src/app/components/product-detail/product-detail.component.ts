@@ -39,6 +39,7 @@ export class ProductDetailComponent implements OnInit {
     productModel: Product;
     patients:any[] = [];
     filteredProducts: Product[];
+    products;
     
     //form state
     enableButton:boolean;
