@@ -1,0 +1,128 @@
+<div class="ui-g-11">
+  <p-card styleClass="ui-card-shadow">
+    <p-table [value]="patients">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Medical Aid Number</th>
+          <th>Auth Number</th>
+          <th>ID Number</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-patient>
+        <tr>
+          <td>{{patient.FirstName}}</td>
+          <td>{{patient.Surname}}</td>
+          <td>{{patient.MedicalAidNumber}}</td>
+          <td>{{patient.UnisolveProfileNumber}}</td>
+          <td>{{patient.IDNumber}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <span>
+      <p-card [style]="{'background-color':'rgb(225, 225, 225)'}">
+        <p-table [value]="products">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Nappi</th>
+              <th>Description</th>
+              <th>Active</th>
+              <th>Dosage</th>
+              <th>Frequency</th>
+              <th>Repeat</th>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <div class="ui-fluid">
+                    <div *ngIf="showAutocompleteFields">
+                      <p-autoComplete 
+                      styleClass="autoComplete-custom"
+                      [(ngModel)]="product" 
+                      [suggestions]="filteredProducts" 
+                      (completeMethod)="filterProductSingle($event, 'nappi')" 
+                      (onSelect)="onSelect($event)"
+                      field="FullDescription" 
+                      [size]="30"
+                      [minLength]="5"></p-autoComplete>
+                    </div>
+                    <div class="ui-fluid" *ngIf="!showAutocompleteFields">
+                        <input type="text" pInputText [(ngModel)]="nappi"/>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div>
+                  <div class="ui-fluid">
+                    <div *ngIf="showAutocompleteFields">
+                      <p-autoComplete 
+                      styleClass="autoComplete-custom"
+                      [(ngModel)]="product" 
+                      [suggestions]="filteredProducts" 
+                      (completeMethod)="filterProductSingle($event, 'productName')" 
+                      (onSelect)="onSelect($event)"
+                      field="FullDescription" 
+                      [size]="30"
+                      [minLength]="1"></p-autoComplete>
+                    </div>
+                    <div class="ui-fluid" *ngIf="!showAutocompleteFields">
+                        <input type="text" pInputText [(ngModel)]="description"/>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div>
+                  <div class="ui-fluid">
+                    <div *ngIf="showAutocompleteFields">
+                      <p-autoComplete 
+                      styleClass="autoComplete-custom"
+                      [(ngModel)]="product" 
+                      [suggestions]="filteredProducts" 
+                      (completeMethod)="filterProductSingle($event, 'active')" 
+                      (onSelect)="onSelect($event)"
+                      field="FullDescription" 
+                      [size]="30"
+                      [minLength]="1"></p-autoComplete>
+                    </div>
+                    <div class="ui-fluid" *ngIf="!showAutocompleteFields">
+                        <input type="text" pInputText [(ngModel)]="active"/>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="ui-fluid">
+                  <input type="text" pInputText [(ngModel)]="dosage"/>
+                </div>
+              </td>
+              <td>
+                <div class="ui-fluid">
+                  <input type="text" pInputText [(ngModel)]="frequency"/>
+                </div>
+              </td>
+              <td>
+                <div class="ui-fluid">
+                  <input type="text" pInputText [(ngModel)]="repeat"/>
+                </div>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </p-card>  
+    </span>
+    
+    <p-footer>
+      <p-button 
+      label="Save TP" 
+      [disabled]="!enableButton" 
+      (onClick)="saveTreatment()"></p-button>
+      
+    </p-footer>
+  </p-card>
+</div>
+
+
+
