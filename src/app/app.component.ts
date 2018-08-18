@@ -30,7 +30,7 @@ export class AppComponent {
   ){
   }
   ngOnInit(){
-    this.router.navigate(['']);
+    this.router.navigate(['add-patient']);
     //this.router.navigate(['add-patient']);
     this.sharedService.currentPatient.subscribe(res => {
       if(res !== null){
@@ -67,9 +67,7 @@ export class AppComponent {
   products: Products[] = [];
   buttonState:boolean = false;
   showSubmitGroupButton: boolean;
-
   treatmentProtocols:TreatmentProtocol[] = [];
-
   patientModel:any;
   patientSearch:boolean = true;
 
@@ -85,7 +83,6 @@ export class AppComponent {
       PersonID: this.patientModel.PersonID,
       Products: this.products
     }
-    console.log(value);
     this.sharedService.emitTreeviewState(true);
     this.router.navigate(['add-patient']);
   }

@@ -35,7 +35,7 @@ import { ProductDetailComponent } from './components/product-detail/product-deta
 
 
 const appRoutes: Routes = [
-  { path: '', component: LoginPageComponent },
+  //{ path: '', component: LoginPageComponent },
   { path: 'add-patient', component: ClientDetailContainerComponent },
   { path: 'add-product', component: ProductDetailComponent }
 ]

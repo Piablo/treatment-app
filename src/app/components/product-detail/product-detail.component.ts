@@ -69,7 +69,8 @@ export class ProductDetailComponent implements OnInit {
       //   this.productModel.CycleLength = res.Repeat;
       // })
       console.log(this.productArray);
-        this.sharedService.pushProductToTree(this.productArray[0]);
+      var index = this.productArray.length - 1;
+        this.sharedService.pushProductToTree(this.productArray[index]);
       // this.sharedService.setApplicationState('clientComponent', true);
       // this.sharedService.setApplicationState('patientSearch', true);
       // this.sharedService.setShowProductSearch(true);
