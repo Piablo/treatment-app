@@ -22,13 +22,13 @@ export class ProductDetailComponent implements OnInit {
       this.sharedService.productState.subscribe(res =>{
         this.enableButton = !res;
       })
-
+      
       //this.productModel = this.populateData(null);
     }
-
+    
     //Vars
     url = '../assets/data/products.json';
-
+    
     //Fields
     nappi:string;
     description:string;
@@ -36,7 +36,7 @@ export class ProductDetailComponent implements OnInit {
     dosage:number = null;
     frequency:number = null;
     repeat:number = null;
-
+    
     //Models
     productModel: Product;
     patients:any[] = [];
@@ -48,20 +48,20 @@ export class ProductDetailComponent implements OnInit {
     //form state
     enableButton:boolean = false;
     showAutocompleteFields:boolean = true;
-
+    
     //Validators
     productSelected:boolean = false;
-
+    
     saveTreatment(){
       this.productHolder.Dosage = this.dosage;
       this.productHolder.Frequency = this.frequency;
       this.productHolder.Repeat = this.repeat;
-
+      
       this.productArray.push(this.productHolder);
       this.sharedService.currentUserEnteredDetails.subscribe(res => {
         console.log(res);
       })
-
+      
       this.resetFields();
       // this.sharedService.currentUserEnteredDetails.subscribe(res => {
       //   this.productModel.Dosage = res.Dosage;
@@ -70,13 +70,13 @@ export class ProductDetailComponent implements OnInit {
       // })
       console.log(this.productArray);
       var index = this.productArray.length - 1;
-        this.sharedService.pushProductToTree(this.productArray[index]);
+      this.sharedService.pushProductToTree(this.productArray[index]);
       // this.sharedService.setApplicationState('clientComponent', true);
       // this.sharedService.setApplicationState('patientSearch', true);
       // this.sharedService.setShowProductSearch(true);
-      // this.sharedService.setSubmitButtonState(true);
+      this.sharedService.setSubmitButtonState(true);
     }
-
+    
     resetFields(){
       this.onTextchanged();
       this.dosage = null;
@@ -91,7 +91,7 @@ export class ProductDetailComponent implements OnInit {
         this.filteredProducts = this.filterProduct(query, products, inputField);
       });
     }
-  
+    
     onSelect(event){
       this.showAutocompleteFields = false;
       this.productSelected = true;
@@ -99,9 +99,9 @@ export class ProductDetailComponent implements OnInit {
       this.description = event.Description;
       this.active = event.Active;
       this.productHolder = event;
-
+      
       event.FullDescription = "";
-      this.checkValidation();
+      this.checkValidation(event, 'na');
     }
     
     filterProduct(query, products: any[], inputField):any[] {
@@ -134,7 +134,7 @@ export class ProductDetailComponent implements OnInit {
       }
       return filtered;
     }
-  
+    
     populateData(product){
       var value = {
         Active:product.Active,
@@ -157,7 +157,23 @@ export class ProductDetailComponent implements OnInit {
       this.productSelected = false;
       this.enableButton = false;
     }
-    checkValidation(){
+    checkValidation(event, fieldType){
+      if(event.key === 'e'){
+        if(fieldType === 'dosage'){
+          this.dosage = 0;
+          this.warningMessage();
+        }
+        else if(fieldType === 'frequency'){
+          this.frequency = 0;
+          this.warningMessage();
+        }
+        else if(fieldType === 'repeat'){
+          this.repeat = 0;
+          this.warningMessage();
+        }
+      }
+      
+      
       var value = false;
       if(this.productSelected){
         if(this.dosage !== null){
@@ -169,6 +185,13 @@ export class ProductDetailComponent implements OnInit {
         }
       }
       this.enableButton = value;
+    }
+
+    msgs:any[];
+
+    warningMessage(){
+      this.msgs = [];
+      this.msgs.push({severity:'warn', summary:'Warning', detail:'This field only accepts numbers.'});
     }
   }
   

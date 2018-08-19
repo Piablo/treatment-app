@@ -1,4 +1,7 @@
+
+<p-growl [(value)]="msgs"></p-growl>
 <p-table>
+    
   <ng-template pTemplate="header" class="ui-g-12">
     <tr>
       <th>First Name</th>
@@ -40,7 +43,9 @@
       <td>
         <div class="ui-fluid">
           <input type="number" pInputText 
+          (focus)="validationMessage()"
           [(ngModel)]="IDNumber"
+          
           (keyup)="checkValidation()"/> 
         </div>
       </td>

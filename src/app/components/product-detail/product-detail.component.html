@@ -1,3 +1,5 @@
+<p-growl [(value)]="msgs"></p-growl>
+
 <div class="ui-g-11">
   <p-card styleClass="ui-card-shadow">
     <p-table [value]="patients">
@@ -48,7 +50,7 @@
                       [minLength]="5"></p-autoComplete>
                     </div>
                     <div class="ui-fluid" *ngIf="!showAutocompleteFields">
-                        <input type="text" pInputText [(ngModel)]="nappi" (keyup)="onTextchanged()"/>
+                        <input type="text" pInputText [(ngModel)]="nappi" (keyup)="onTextchanged($event, 'text')"/>
                     </div>
                   </div>
                 </div>
@@ -68,7 +70,7 @@
                       [minLength]="1"></p-autoComplete>
                     </div>
                     <div class="ui-fluid" *ngIf="!showAutocompleteFields">
-                        <input type="text" pInputText [(ngModel)]="description" (keyup)="onTextchanged()"/>
+                        <input type="text" pInputText [(ngModel)]="description" (keyup)="onTextchanged($event)"/>
                     </div>
                   </div>
                 </div>
@@ -88,24 +90,24 @@
                       [minLength]="1"></p-autoComplete>
                     </div>
                     <div class="ui-fluid" *ngIf="!showAutocompleteFields">
-                        <input type="text" pInputText [(ngModel)]="active" (keyup)="onTextchanged()"/>
+                        <input type="text" pInputText [(ngModel)]="active" (keyup)="onTextchanged($event, 'test')"/>
                     </div>
                   </div>
                 </div>
               </td>
               <td>
                 <div class="ui-fluid">
-                  <input type="number" pInputText [(ngModel)]="dosage" (keyup)="checkValidation()"/>
+                  <input type="number" pInputText [(ngModel)]="dosage" (keyup)="checkValidation($event, 'dosage')"/>
                 </div>
               </td>
               <td>
                 <div class="ui-fluid">
-                  <input type="number" pInputText [(ngModel)]="frequency" (keyup)="checkValidation()"/>
+                  <input type="number" pInputText [(ngModel)]="frequency" (keyup)="checkValidation($event, 'frequency')"/>
                 </div>
               </td>
               <td>
                 <div class="ui-fluid">
-                  <input type="number" pInputText [(ngModel)]="repeat" (keyup)="checkValidation()"/>
+                  <input type="number" pInputText [(ngModel)]="repeat" (keyup)="checkValidation($event, 'repeat')"/>
                 </div>
               </td>
             </tr>

@@ -32,6 +32,7 @@ export class ClientDetailNewComponent implements OnInit {
   Surname:string = ""
   TreatmentProtocols:string = "";
   UnisolveProfileNumber:number = null;
+  msgs:any[];
   
   patientSelected:boolean = false;
   
@@ -54,7 +55,6 @@ export class ClientDetailNewComponent implements OnInit {
     this.TreatmentProtocols = this.patientDetails.TreatmentProtocols;
     this.UnisolveProfileNumber = this.patientDetails.UnisolveProfileNumber;
   }
-  
   
   checkValidation(){
     var showButton = true;
@@ -80,7 +80,12 @@ export class ClientDetailNewComponent implements OnInit {
       showButton = false;
     }
     if(this.IDNumber !== null){
-      showAutoCompletePage = false;
+      var validated = this.userIdValitated();
+      if(validated){
+        showAutoCompletePage = false;
+      }else{
+        showButton = false;
+      }
     }else{
       showButton = false;
     }
@@ -89,6 +94,18 @@ export class ClientDetailNewComponent implements OnInit {
       this.showAutoComplete.emit(true);
     }
   }
+  
+  userIdValitated(){
+    var value = false;
+    if(this.IDNumber.toString().length === 13){
+      value = true;
+    }
+    if(this.IDNumber.toString().length > 13){
+      this.warningMessage();
+    }
+    return value;
+  }
+  
   enterNewPatientDetails(){
     this.FirstName = this.stringService.firstLetterToUpper(this.FirstName);
     this.Surname = this.stringService.firstLetterToUpper(this.Surname);
@@ -106,5 +123,14 @@ export class ClientDetailNewComponent implements OnInit {
     this.sharedService.emitPatient(this.patientDetails);
     this.updateModel.emit(this.patientDetails);
     this.router.navigate(['/add-product']);
+  }
+  
+  validationMessage() {
+    this.msgs = [];
+    this.msgs.push({severity:'info', summary:'ID Validation', detail:'Valid ID number needs to be 13 digits long.'});
+  }
+  warningMessage(){
+    this.msgs = [];
+    this.msgs.push({severity:'error', summary:'ID Validation', detail:'The number you have entered is too long!'});
   }
 }

@@ -1,5 +1,4 @@
 import { Component} from '@angular/core';
-import { Product } from '../assets/models/product';
 import { DataService } from '../app/services/data.service';
 import { SharedService } from '../app/services/shared.service';
 import { Router } from '@angular/router';
@@ -84,14 +83,16 @@ export class AppComponent {
       Products: this.products
     }
     this.sharedService.emitTreeviewState(true);
+    this.sharedService.setApplicationState('clientComponent', true);
+    this.sharedService.setApplicationState('patientSearch',false);
     this.router.navigate(['add-patient']);
+    this.sharedService.setSubmitButtonState(false);
   }
   cancelProtocol(){
     this.buttonState = true;
     this.sharedService.emitTreeviewState(true);
     this.sharedService.setApplicationState('clientComponent', true);
     this.sharedService.setApplicationState('patientSearch',false);
-    this.sharedService.emitTreeviewState(true);
     this.router.navigate(['add-patient']);
   }
 }
