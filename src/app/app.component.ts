@@ -37,7 +37,7 @@ export class AppComponent {
         this.patientSearch = false;
       }
     });
-
+    
     this.sharedService.currentTP.subscribe(res => {
     })
     this.sharedService.currentTreeviewState.subscribe(res => {
@@ -46,11 +46,11 @@ export class AppComponent {
     this.sharedService.currentAddProductState.subscribe(res =>{
       this.patientSearch = res;
     })
-
+    
     this.sharedService.currentSubmitGroupState.subscribe(res =>{
       this.showSubmitGroupButton = res;
     })
-
+    
     this.sharedService.productArray.subscribe(res => {
       if(res!==null){
         var value = {
@@ -69,7 +69,7 @@ export class AppComponent {
   treatmentProtocols:TreatmentProtocol[] = [];
   patientModel:any;
   patientSearch:boolean = true;
-
+  
   addMedicationInfo(event){
     this.patientModel = event;
     this.patientSearch = false;
@@ -94,5 +94,6 @@ export class AppComponent {
     this.sharedService.setApplicationState('clientComponent', true);
     this.sharedService.setApplicationState('patientSearch',false);
     this.router.navigate(['add-patient']);
+    this.sharedService.setSubmitButtonState(false);
   }
 }
