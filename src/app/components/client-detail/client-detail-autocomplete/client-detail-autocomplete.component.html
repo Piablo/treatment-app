@@ -13,6 +13,7 @@
                     <div>
                         <div class="ui-fluid">
                             <p-autoComplete 
+                            styleClass="autoComplete-custom"
                             [(ngModel)]="country" 
                             [(ngModel)]="FirstName" 
                             [suggestions]="filteredCountriesSingle" 
@@ -31,6 +32,7 @@
                 <div>
                     <div class="ui-fluid">
                         <p-autoComplete 
+                        styleClass="autoComplete-custom"
                         [(ngModel)]="country" 
                         [(ngModel)]="Surname" 
                         [suggestions]="filteredCountriesSingle" 
@@ -46,14 +48,14 @@
         </td>
         <td>
             <div class="ui-fluid">
-                <input type="text" pInputText 
+                <input type="number" pInputText 
                 [(ngModel)]="MedicalAidNumber"
                 (focus)="onFocus('medAidNumber')"/>
             </div>
         </td>
         <td>
             <div class="ui-fluid">
-                <input type="text" pInputText 
+                <input type="number" pInputText 
                 [(ngModel)]="authNumber"
                 (focus)="onFocus('authNumber')"/>
             </div>

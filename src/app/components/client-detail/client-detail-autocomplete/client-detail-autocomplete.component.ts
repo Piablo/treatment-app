@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { DataService } from '../../../services/data.service';
 import { PatientDetails } from '../../../../assets/models/patient';
 import { SharedService } from '../../../services/shared.service';
@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-client-detail-autocomplete',
   templateUrl: './client-detail-autocomplete.component.html',
-  styleUrls: ['./client-detail-autocomplete.component.css']
+  styleUrls: ['./client-detail-autocomplete.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ClientDetailAutocompleteComponent implements OnInit {
   
@@ -39,9 +40,7 @@ export class ClientDetailAutocompleteComponent implements OnInit {
   UnisolveProfileNumber:number = null;
   IDNumber:number = null;
 
-
   //Patient Details
-  
   MedicalAidName: string = "";
   PersonID:number = null;
   TreatmentProtocols:string = "";
@@ -112,6 +111,7 @@ export class ClientDetailAutocompleteComponent implements OnInit {
     //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
     let filtered : any[] = [];
     var value;
+    
     for(let i = 0; i < patients.length; i++) {
       let patient = patients[i];
       
@@ -154,7 +154,6 @@ export class ClientDetailAutocompleteComponent implements OnInit {
 
   checkForPopulatedFields(){
     var value:boolean = false;
-    
     if(this.FirstName !== ""){
       value = true;
       this.FirstName = this.stringService.firstLetterToUpper(this.FirstName);
@@ -164,6 +163,9 @@ export class ClientDetailAutocompleteComponent implements OnInit {
       this.Surname = this.stringService.firstLetterToUpper(this.Surname);
     }
     if(this.MedicalAidNumber !== null){
+      value = true;
+    }
+    if(this.UnisolveProfileNumber !== null){
       value = true;
     }
     if(this.IDNumber !== null){

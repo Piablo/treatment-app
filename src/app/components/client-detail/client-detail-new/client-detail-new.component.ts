@@ -57,6 +57,7 @@ export class ClientDetailNewComponent implements OnInit {
   }
   
   checkValidation(){
+    console.log(this.MedicalAidNumber);
     var showButton = true;
     var showAutoCompletePage = true;
     if(this.FirstName !== ""){
