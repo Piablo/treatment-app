@@ -41,7 +41,7 @@ export class AppComponent {
     this.sharedService.currentTP.subscribe(res => {
     })
     this.sharedService.currentTreeviewState.subscribe(res => {
-      this.buttonState = res;
+      //this.buttonState = res;
     })
     this.sharedService.currentAddProductState.subscribe(res =>{
       this.patientSearch = res;
@@ -62,9 +62,12 @@ export class AppComponent {
         this.products.push(value);
       }
     })
+    this.sharedService.cancelButtonState.subscribe(res => {
+      this.cancelButtonState = res;
+    })
   }
   products: Products[] = [];
-  buttonState:boolean = false;
+  cancelButtonState:boolean;
   showSubmitGroupButton: boolean;
   treatmentProtocols:TreatmentProtocol[] = [];
   patientModel:any;
@@ -87,13 +90,15 @@ export class AppComponent {
     this.sharedService.setApplicationState('patientSearch',false);
     this.router.navigate(['add-patient']);
     this.sharedService.setSubmitButtonState(false);
+    this.sharedService.setCancelButtonState(false);
   }
   cancelProtocol(){
-    this.buttonState = true;
+    this.sharedService.setCancelButtonState(true);
     this.sharedService.emitTreeviewState(true);
     this.sharedService.setApplicationState('clientComponent', true);
     this.sharedService.setApplicationState('patientSearch',false);
     this.router.navigate(['add-patient']);
     this.sharedService.setSubmitButtonState(false);
+    this.sharedService.setCancelButtonState(false);
   }
 }

@@ -108,6 +108,7 @@ export class ClientDetailNewComponent implements OnInit {
   }
   
   enterNewPatientDetails(){
+    debugger;
     this.FirstName = this.stringService.firstLetterToUpper(this.FirstName);
     this.Surname = this.stringService.firstLetterToUpper(this.Surname);
     
@@ -122,6 +123,7 @@ export class ClientDetailNewComponent implements OnInit {
     this.patientDetails.UnisolveProfileNumber = this.UnisolveProfileNumber;
     
     this.sharedService.emitPatient(this.patientDetails);
+    this.sharedService.setCancelButtonState(true);
     this.updateModel.emit(this.patientDetails);
     this.router.navigate(['/add-product']);
   }

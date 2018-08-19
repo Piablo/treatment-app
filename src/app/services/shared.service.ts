@@ -75,4 +75,11 @@ export class SharedService {
   emitUserEnteredProductDetails(model: AddedDetails){
     this.userEnteredProductDetails.next(model);
   }
+
+  private currentCancelButtonState = new BehaviorSubject<boolean>(false);
+  cancelButtonState = this.currentCancelButtonState.asObservable();
+
+  setCancelButtonState(state: boolean){
+    this.currentCancelButtonState.next(state);
+  }
 }

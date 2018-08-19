@@ -64,6 +64,7 @@ export class ClientDetailAutocompleteComponent implements OnInit {
     this.patient = event;
 
     this.sharedService.emitPatient(this.patient);
+    this.sharedService.setCancelButtonState(true);
     this.acceptPatient();
   }
   
