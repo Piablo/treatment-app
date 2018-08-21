@@ -36,6 +36,7 @@ export class ProductDetailComponent implements OnInit {
     dosage:number = null;
     frequency:number = null;
     repeat:number = null;
+    disableAutocomplete:boolean = false;
     
     //Models
     productModel: Product;
@@ -99,6 +100,7 @@ export class ProductDetailComponent implements OnInit {
       this.description = event.Description;
       this.active = event.Active;
       this.productHolder = event;
+      
       
       event.FullDescription = "";
       this.checkValidation(event, 'na');

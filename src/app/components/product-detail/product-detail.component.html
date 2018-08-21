@@ -41,6 +41,7 @@
                     <div *ngIf="showAutocompleteFields">
                       <p-autoComplete 
                       styleClass="autoComplete-custom"
+                      [disabled]="disableAutocomplete"
                       [(ngModel)]="product" 
                       [suggestions]="filteredProducts" 
                       (completeMethod)="filterProductSingle($event, 'nappi')" 
@@ -50,7 +51,7 @@
                       [minLength]="5"></p-autoComplete>
                     </div>
                     <div class="ui-fluid" *ngIf="!showAutocompleteFields">
-                        <input type="text" pInputText [(ngModel)]="nappi" (keyup)="onTextchanged($event, 'text')"/>
+                      <input type="text" pInputText [(ngModel)]="nappi" readonly pTooltip={{nappi}} tooltipPosition="bottom"/>
                     </div>
                   </div>
                 </div>
@@ -61,6 +62,7 @@
                     <div *ngIf="showAutocompleteFields">
                       <p-autoComplete 
                       styleClass="autoComplete-custom"
+                      [disabled]="disableAutocomplete"
                       [(ngModel)]="product" 
                       [suggestions]="filteredProducts" 
                       (completeMethod)="filterProductSingle($event, 'productName')" 
@@ -70,7 +72,7 @@
                       [minLength]="1"></p-autoComplete>
                     </div>
                     <div class="ui-fluid" *ngIf="!showAutocompleteFields">
-                        <input type="text" pInputText [(ngModel)]="description" (keyup)="onTextchanged($event)"/>
+                      <input type="text" pInputText [(ngModel)]="description" readonly pTooltip={{description}} tooltipPosition="bottom"/>
                     </div>
                   </div>
                 </div>
@@ -81,6 +83,7 @@
                     <div *ngIf="showAutocompleteFields">
                       <p-autoComplete 
                       styleClass="autoComplete-custom"
+                      [disabled]="disableAutocomplete"
                       [(ngModel)]="product" 
                       [suggestions]="filteredProducts" 
                       (completeMethod)="filterProductSingle($event, 'active')" 
@@ -89,8 +92,9 @@
                       [size]="30"
                       [minLength]="1"></p-autoComplete>
                     </div>
+
                     <div class="ui-fluid" *ngIf="!showAutocompleteFields">
-                        <input type="text" pInputText [(ngModel)]="active" (keyup)="onTextchanged($event, 'test')"/>
+                      <input type="text" pInputText [(ngModel)]="active" readonly pTooltip={{active}} tooltipPosition="bottom"/>
                     </div>
                   </div>
                 </div>
