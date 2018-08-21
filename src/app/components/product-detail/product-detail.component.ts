@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { Product } from '../../../assets/models/product';
 import { SharedService } from '../../services/shared.service';
 import { DataService } from '../../services/data.service';
@@ -26,6 +26,8 @@ export class ProductDetailComponent implements OnInit {
       //this.productModel = this.populateData(null);
     }
     
+    @ViewChild('dosageFocus') dosageFocus: ElementRef;
+
     //Vars
     url = '../assets/data/products.json';
     
@@ -53,29 +55,28 @@ export class ProductDetailComponent implements OnInit {
     //Validators
     productSelected:boolean = false;
     
-    saveTreatment(){
-      this.productHolder.Dosage = this.dosage;
-      this.productHolder.Frequency = this.frequency;
-      this.productHolder.Repeat = this.repeat;
-      
+    dialogSave(){
       this.productArray.push(this.productHolder);
       this.sharedService.currentUserEnteredDetails.subscribe(res => {
         console.log(res);
       })
       
-      this.resetFields();
-      // this.sharedService.currentUserEnteredDetails.subscribe(res => {
-      //   this.productModel.Dosage = res.Dosage;
-      //   this.productModel.Frequency = res.Frequency;
-      //   this.productModel.CycleLength = res.Repeat;
-      // })
-      console.log(this.productArray);
       var index = this.productArray.length - 1;
       this.sharedService.pushProductToTree(this.productArray[index]);
-      // this.sharedService.setApplicationState('clientComponent', true);
-      // this.sharedService.setApplicationState('patientSearch', true);
-      // this.sharedService.setShowProductSearch(true);
       this.sharedService.setSubmitButtonState(true);
+      this.resetFields();
+      this.displayDialog = false;
+    }
+    dialogCancel(){
+      this.resetFields();
+      this.displayDialog = false;
+    }
+    
+    saveTP(){
+      this.productHolder.Dosage = this.dosage;
+      this.productHolder.Frequency = this.frequency;
+      this.productHolder.Repeat = this.repeat;
+      this.displayDialog = true;
     }
     
     resetFields(){
@@ -93,6 +94,8 @@ export class ProductDetailComponent implements OnInit {
       });
     }
     
+    displayDialog:boolean = false;
+    
     onSelect(event){
       this.showAutocompleteFields = false;
       this.productSelected = true;
@@ -101,9 +104,10 @@ export class ProductDetailComponent implements OnInit {
       this.active = event.Active;
       this.productHolder = event;
       
-      
       event.FullDescription = "";
       this.checkValidation(event, 'na');
+      debugger;
+      this.dosageFocus.nativeElement.focus();
     }
     
     filterProduct(query, products: any[], inputField):any[] {
@@ -188,9 +192,9 @@ export class ProductDetailComponent implements OnInit {
       }
       this.enableButton = value;
     }
-
+    
     msgs:any[];
-
+    
     warningMessage(){
       this.msgs = [];
       this.msgs.push({severity:'warn', summary:'Warning', detail:'This field only accepts numbers.'});

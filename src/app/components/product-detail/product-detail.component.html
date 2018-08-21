@@ -92,7 +92,7 @@
                       [size]="30"
                       [minLength]="1"></p-autoComplete>
                     </div>
-
+                    
                     <div class="ui-fluid" *ngIf="!showAutocompleteFields">
                       <input type="text" pInputText [(ngModel)]="active" readonly pTooltip={{active}} tooltipPosition="bottom"/>
                     </div>
@@ -101,7 +101,7 @@
               </td>
               <td>
                 <div class="ui-fluid">
-                  <input type="number" pInputText [(ngModel)]="dosage" (keyup)="checkValidation($event, 'dosage')"/>
+                  <input #dosageFocus type="number" pInputText [(ngModel)]="dosage" (keyup)="checkValidation($event, 'dosage')"/>
                 </div>
               </td>
               <td>
@@ -138,11 +138,25 @@
       <p-button 
       label="Save TP" 
       [disabled]="!enableButton" 
-      (onClick)="saveTreatment()"></p-button>
+      (onClick)="saveTP()"></p-button>
       
     </p-footer>
   </p-card>
 </div>
+
+<p-dialog appendTo="body" header="Confirm product selection" [(visible)]="displayDialog" [modal]="true" [responsive]="true" [width]="350" [minWidth]="200" [minY]="70" 
+[baseZIndex]="10000">
+<p>Nappi: {{nappi}}</p>
+<p>Description: {{description}}</p>
+<p>Active: {{active}}</p>
+<p>Dosage: {{dosage}}</p>
+<p>Frequency: {{frequency}}</p>
+<p>Repeat: {{repeat}}</p>
+<p-footer>
+  <button type="button" pButton (click)="dialogSave()" label="Save"></button>
+  <button type="button" pButton (click)="dialogCancel()" label="Cancel" class="ui-button-secondary"></button>
+</p-footer>
+</p-dialog>
 
 
 

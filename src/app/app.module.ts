@@ -22,6 +22,7 @@ import {TooltipModule} from 'primeng/tooltip';
 import {DialogModule} from 'primeng/dialog';
 import {GrowlModule} from 'primeng/growl';
 
+
 //Components
 import { AppComponent } from './app.component';
 import { ClientDetailAutocompleteComponent } from './components/client-detail/client-detail-autocomplete/client-detail-autocomplete.component';
