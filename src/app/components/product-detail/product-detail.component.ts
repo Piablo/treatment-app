@@ -10,11 +10,11 @@ import { DataService } from '../../services/data.service';
   encapsulation: ViewEncapsulation.None
 })
 export class ProductDetailComponent implements OnInit {
-  
+
   constructor(
     private sharedService: SharedService,
     private dataService: DataService) { }
-    
+    //Lifecycle hooks
     ngOnInit() {
       this.sharedService.currentPatient.subscribe(res =>{
         this.patients.push(res);
@@ -25,12 +25,16 @@ export class ProductDetailComponent implements OnInit {
       
       //this.productModel = this.populateData(null);
     }
-    
-    @ViewChild('dosageFocus') dosageFocus: ElementRef;
-
+    ngDoCheck(){
+      if(this.setFocus){
+        this.dosageFocus.nativeElement.focus();
+        console.log('set the focus');
+        this.setFocus = false;
+      }
+    }
     //Vars
+    @ViewChild('dosageFocus') dosageFocus: ElementRef;
     url = '../assets/data/products.json';
-    
     //Fields
     nappi:string;
     description:string;
@@ -39,7 +43,6 @@ export class ProductDetailComponent implements OnInit {
     frequency:number = null;
     repeat:number = null;
     disableAutocomplete:boolean = false;
-    
     //Models
     productModel: Product;
     patients:any[] = [];
@@ -47,14 +50,16 @@ export class ProductDetailComponent implements OnInit {
     products;
     productHolder;
     productArray: Product[] = [];
-    
+    msgs:any[];
     //form state
     enableButton:boolean = false;
     showAutocompleteFields:boolean = true;
-    
+    setFocus:boolean = false;
+    displayDialog:boolean = false;
     //Validators
     productSelected:boolean = false;
     
+    //When user hits save on dialog box
     dialogSave(){
       this.productArray.push(this.productHolder);
       this.sharedService.currentUserEnteredDetails.subscribe(res => {
@@ -64,28 +69,31 @@ export class ProductDetailComponent implements OnInit {
       var index = this.productArray.length - 1;
       this.sharedService.pushProductToTree(this.productArray[index]);
       this.sharedService.setSubmitButtonState(true);
-      this.resetFields();
+      this.clearFields();
       this.displayDialog = false;
     }
+    //When user hits cancel on dialog
     dialogCancel(){
-      this.resetFields();
+      this.clearFields();
       this.displayDialog = false;
     }
-    
+    //When user hits save tp button
     saveTP(){
       this.productHolder.Dosage = this.dosage;
       this.productHolder.Frequency = this.frequency;
       this.productHolder.Repeat = this.repeat;
       this.displayDialog = true;
     }
-    
-    resetFields(){
+    //clears the fields when tp is saveed or canceled
+    clearFields(){
       this.onTextchanged();
       this.dosage = null;
       this.frequency = null;
       this.repeat = null;
     }
-    
+    ///
+    ///Auto complete functions-------------------------------->
+    ///
     filterProductSingle(event, inputField) {
       let query = event.query;
       this.url = 'api/treatmentprotocolproducts/Search?searchOptions.';
@@ -93,9 +101,7 @@ export class ProductDetailComponent implements OnInit {
         this.filteredProducts = this.filterProduct(query, products, inputField);
       });
     }
-    
-    displayDialog:boolean = false;
-    
+
     onSelect(event){
       this.showAutocompleteFields = false;
       this.productSelected = true;
@@ -106,8 +112,7 @@ export class ProductDetailComponent implements OnInit {
       
       event.FullDescription = "";
       this.checkValidation(event, 'na');
-      debugger;
-      this.dosageFocus.nativeElement.focus();
+      this.setFocus = true;
     }
     
     filterProduct(query, products: any[], inputField):any[] {
@@ -140,7 +145,7 @@ export class ProductDetailComponent implements OnInit {
       }
       return filtered;
     }
-    
+    //// End of Auto complete functions-------------------------------->
     populateData(product){
       var value = {
         Active:product.Active,
@@ -158,11 +163,13 @@ export class ProductDetailComponent implements OnInit {
       }
       return value;
     }
+
     onTextchanged(){
       this.showAutocompleteFields = true;
       this.productSelected = false;
       this.enableButton = false;
     }
+
     checkValidation(event, fieldType){
       if(event.key === 'e'){
         if(fieldType === 'dosage'){
@@ -192,9 +199,7 @@ export class ProductDetailComponent implements OnInit {
       }
       this.enableButton = value;
     }
-    
-    msgs:any[];
-    
+
     warningMessage(){
       this.msgs = [];
       this.msgs.push({severity:'warn', summary:'Warning', detail:'This field only accepts numbers.'});

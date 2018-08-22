@@ -82,4 +82,11 @@ export class SharedService {
   setCancelButtonState(state: boolean){
     this.currentCancelButtonState.next(state);
   }
+
+  private fieldFocusState = new BehaviorSubject(false);
+  FieldFocusState = this.fieldFocusState.asObservable();
+
+  setFocusedField(state){
+    this.fieldFocusState.next(state);
+  }
 }
